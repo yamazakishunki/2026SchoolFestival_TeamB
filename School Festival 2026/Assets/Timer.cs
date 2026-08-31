@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine.Events; // NEW
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     public float timeremaining = 180;
     public Text timeText;
 
-    public UnityEvent OnTimeUp; // NEW
+    public UnityEvent OnTimeUp;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class Timer : MonoBehaviour
             {
                 Debug.Log("Times over");
                 timerrunning = false;
-                OnTimeUp?.Invoke(); // NEW — fires once, right when the timer hits 0
+                OnTimeUp?.Invoke();
             }
         }
     }
