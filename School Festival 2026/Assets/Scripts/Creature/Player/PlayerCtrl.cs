@@ -7,20 +7,19 @@ public class PlayerCtrl : MonoBehaviour
     public float movespeed;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private bool movementLocked = false;
-    public bool IsStunned { get; private set; }
+    private bool movementLocked = false; // NEW
 
-    [SerializeField] private SpriteRenderer spriteRenderer; 
+    [SerializeField] private SpriteRenderer spriteRenderer; // NEW
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>(); // NEW
     }
 
     void Update()
     {
-        if (movementLocked)
+        if (movementLocked) // NEW
         {
             movement = Vector2.zero;
             return;
@@ -36,7 +35,7 @@ public class PlayerCtrl : MonoBehaviour
             movement.Normalize();
         }
 
-        
+        // NEW: flip sprite to face the direction of horizontal movement
         if (x < 0)
         {
             spriteRenderer.flipX = true;
@@ -45,36 +44,32 @@ public class PlayerCtrl : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-        
+        // if x == 0 (moving only vertically or standing still), keep facing whichever way it was last
     }
 
-    public void Stun(float duration)
-    {
-        if (IsStunned) return; 
-        StartCoroutine(StunRoutine(duration));
-    }
-
-    private IEnumerator StunRoutine(float duration)
-    {
-        IsStunned = true;
-        SetMovementLocked(true);
-        yield return new WaitForSeconds(duration);
-        SetMovementLocked(false);
-        IsStunned = false;
-    }
     void FixedUpdate()
     {
         Vector2 targetVelocity = movement * movespeed;
         rb.linearVelocity = targetVelocity;
     }
 
+    // NEW: called externally (by the harvest script) to freeze movement
     public void SetMovementLocked(bool locked)
     {
         movementLocked = locked;
         if (locked)
         {
             movement = Vector2.zero;
-            rb.linearVelocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero; // stop immediately, not just ignore new input
         }
+    }
+    public bool IsMovementLocked()
+    {
+        return movementLocked;
+    }
+
+    public bool IsInvincible()
+    {
+        return movementLocked;
     }
 }
