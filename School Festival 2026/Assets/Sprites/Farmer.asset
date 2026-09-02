@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77fafcc6bd2ee94ebe9ac341b986e7a, type: 3}
+  m_Name: Farmer
+  m_EditorClassIdentifier: GabrielBigardi.SpriteAnimator::GabrielBigardi.SpriteAnimator.SpriteAnimationObject
+  SpriteAnimations:
+  - Name: Walking
+    FPS: 10
+    Frames:
+    - {fileID: -3250164278248464269, guid: eac976b2bc4179b429f9d2eb4f3e5425, type: 3}
+    - {fileID: -7552538039586609111, guid: eac976b2bc4179b429f9d2eb4f3e5425, type: 3}
+    - {fileID: 645975228261514920, guid: eac976b2bc4179b429f9d2eb4f3e5425, type: 3}
+    - {fileID: -6652742797483859503, guid: eac976b2bc4179b429f9d2eb4f3e5425, type: 3}
+    - {fileID: 2645294376902769735, guid: eac976b2bc4179b429f9d2eb4f3e5425, type: 3}
+    - {fileID: -4356611513383482288, guid: eac976b2bc4179b429f9d2eb4f3e5425, type: 3}
+    SpriteAnimationType: 0
+  - Name: Harvesting
+    FPS: 10
+    Frames:
+    - {fileID: 362901403585357341, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
+    - {fileID: 361571318710065539, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
+    - {fileID: 8036514845741857971, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
+    - {fileID: -8757670935888160136, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
+    - {fileID: 7915251984800347513, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
+    - {fileID: 4180040824273858238, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
+    SpriteAnimationType: 0

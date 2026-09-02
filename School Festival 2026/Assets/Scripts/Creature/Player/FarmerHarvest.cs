@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FarmerHarvest : MonoBehaviour
 {
@@ -6,12 +7,13 @@ public class FarmerHarvest : MonoBehaviour
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private KeyCode harvestKey = KeyCode.Space;
     [SerializeField] private float harvestDuration = 2f;
-    [SerializeField] private float feverHarvestMultiplier = 0.5f; // NEW — twice as fast = half the duration
+    [SerializeField] private float feverHarvestTimeMultiplier = 0.5f;
+    [SerializeField] private HarvestProgressUI progUI;
 
     private RiceCrop nearbyCrop;
     private float holdTimer = 0f;
     private bool isHarvesting = false;
-    private float currentHarvestDuration; // NEW — locked in when harvest starts, so speeding up/slowing down mid-hold doesn't retroactively change progress
+    private float currentHarvestDuration;
 
     private void Update()
     {
@@ -24,8 +26,9 @@ public class FarmerHarvest : MonoBehaviour
             }
 
             holdTimer += Time.deltaTime;
+            progUI.SetProgress(holdTimer / currentHarvestDuration);
 
-            if (holdTimer >= currentHarvestDuration) // NEW — uses the locked-in duration
+            if (holdTimer >= currentHarvestDuration)
             {
                 CompleteHarvest();
             }
@@ -34,6 +37,8 @@ public class FarmerHarvest : MonoBehaviour
         {
             TryStartHarvest();
         }
+
+        
     }
 
     private void TryStartHarvest()
@@ -41,16 +46,17 @@ public class FarmerHarvest : MonoBehaviour
         if (nearbyCrop == null) return;
         if (nearbyCrop.State != RiceCrop.CropState.Ready) return;
         if (inventory.IsFull) return;
+        if (playerCtrl.IsStunned) return; 
 
         isHarvesting = true;
         holdTimer = 0f;
 
-        // NEW: decide this harvest's duration based on current state, right when it starts
         bool isFever = GameStateManager.Instance != null
             && GameStateManager.Instance.CurrentState == GameStateManager.GameState.Fever;
-        currentHarvestDuration = isFever ? harvestDuration * feverHarvestMultiplier : harvestDuration;
+        currentHarvestDuration = isFever ? harvestDuration * feverHarvestTimeMultiplier : harvestDuration;
 
         playerCtrl.SetMovementLocked(true);
+        progUI.Show();
     }
 
     private void CompleteHarvest()
@@ -72,6 +78,7 @@ public class FarmerHarvest : MonoBehaviour
         isHarvesting = false;
         holdTimer = 0f;
         playerCtrl.SetMovementLocked(false);
+        progUI.Hide();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

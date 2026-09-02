@@ -5,7 +5,7 @@ public class ScoreboardPanel : MonoBehaviour
 {
     [SerializeField] private RectTransform panel;
     [SerializeField] private float slideDuration = 0.4f;
-    [SerializeField] private Vector2 hiddenPosition = new Vector2(1200f, 0f); // off-screen right
+    [SerializeField] private Vector2 hiddenPosition = new Vector2(1500f, 0f); // off-screen right
     [SerializeField] private Vector2 shownPosition = new Vector2(0f, 0f);     // on-screen
 
     private Coroutine slideRoutine;
