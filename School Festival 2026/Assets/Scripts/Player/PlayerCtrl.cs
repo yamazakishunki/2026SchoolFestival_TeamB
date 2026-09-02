@@ -63,4 +63,13 @@ public class PlayerCtrl : MonoBehaviour
             rb.linearVelocity = Vector2.zero; // stop immediately, not just ignore new input
         }
     }
+    public bool IsMovementLocked()
+    {
+        return movementLocked;
+    }
+
+    public bool IsInvincible()
+    {
+        return movementLocked;
+    }
 }
