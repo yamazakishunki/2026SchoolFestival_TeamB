@@ -8,6 +8,7 @@ public class PlayerCtrl : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private bool movementLocked = false; // NEW
+    public bool IsStunned {get; private set;}
 
     [SerializeField] private SpriteRenderer spriteRenderer; // NEW
 
@@ -62,6 +63,20 @@ public class PlayerCtrl : MonoBehaviour
             movement = Vector2.zero;
             rb.linearVelocity = Vector2.zero; // stop immediately, not just ignore new input
         }
+    }
+    public void Stun(float duration)
+    {
+        if (IsStunned) return; 
+        StartCoroutine(StunRoutine(duration));
+    }
+
+    private IEnumerator StunRoutine(float duration)
+    {
+        IsStunned = true;
+        SetMovementLocked(true);
+        yield return new WaitForSeconds(duration);
+        SetMovementLocked(false);
+        IsStunned = false;
     }
     public bool IsMovementLocked()
     {
