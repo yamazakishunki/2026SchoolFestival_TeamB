@@ -98,5 +98,6 @@ public class BoarSpawner : MonoBehaviour
             boar.moveSpeed = isRaining ? rainBoarSpeed : normalBoarSpeed;
             boar.SetDirection(direction);
         }
+
     }
 }

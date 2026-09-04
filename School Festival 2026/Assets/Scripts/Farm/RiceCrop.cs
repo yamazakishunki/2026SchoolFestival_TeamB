@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RiceCrop : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class RiceCrop : MonoBehaviour
     [SerializeField] private Sprite readySprite;
 
     public CropState State { get; private set; }
-
+    private static readonly List<RiceCrop> activeCrops = new List<RiceCrop>();
     private Coroutine growRoutine;
 
     private void Awake()
@@ -26,14 +27,25 @@ public class RiceCrop : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+     
+
     private void OnEnable()
     {
-        GameStateManager.OnFeverStart += ForceReadyImmediately; // NEW
+        activeCrops.Add(this); 
+        GameStateManager.OnFeverStart += ForceReadyImmediately; // existing, keep this
     }
 
     private void OnDisable()
     {
-        GameStateManager.OnFeverStart -= ForceReadyImmediately; // NEW
+        activeCrops.Remove(this); 
+        GameStateManager.OnFeverStart -= ForceReadyImmediately; // existing, keep this
+    }
+
+    // NEW ? lets CrowSpawner pick a random tile to target without an expensive FindObjectsOfType search
+    public static RiceCrop GetRandomActiveCrop()
+    {
+        if (activeCrops.Count == 0) return null;
+        return activeCrops[Random.Range(0, activeCrops.Count)];
     }
 
     private void Start()
@@ -94,5 +106,10 @@ public class RiceCrop : MonoBehaviour
             CropState.Ready => readySprite,
             _ => spriteRenderer.sprite
         };
+    }
+
+    public void DestroyAndRegrow()
+    {
+        BeginGrowing(); // stops any in-progress coroutine and restarts from Empty
     }
 }

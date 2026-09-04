@@ -5,7 +5,7 @@ public class Boar : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
-    [Header("消滅設定")]
+    [Header("Death Settings")]
     public Sprite deadSprite;
     public float deadTime = 0.3f;
 
@@ -14,7 +14,7 @@ public class Boar : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -22,6 +22,15 @@ public class Boar : MonoBehaviour
     public void SetDirection(Vector2 direction)
     {
         moveDirection = direction;
+
+        if (direction.x < 0)
+        {
+            spriteRenderer.flipX = true; // moving left
+        }
+        else if (direction.x > 0)
+        {
+            spriteRenderer.flipX = false; // moving right
+        }
     }
 
     void Update()
@@ -32,7 +41,17 @@ public class Boar : MonoBehaviour
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other) // NEW ? separate from OnCollisionEnter2D
+    {
+        if (isDead) return;
+
+        if (other.TryGetComponent(out RiceCrop crop))
+        {
+            crop.DestroyAndRegrow();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) // stays as-is, still handles the Player
     {
         if (isDead)
             return;
@@ -55,19 +74,15 @@ public class Boar : MonoBehaviour
     {
         isDead = true;
 
-        // 動きを止める
         moveDirection = Vector2.zero;
 
-        // 消滅用画像に変更
         if (deadSprite != null)
         {
             spriteRenderer.sprite = deadSprite;
         }
 
-        // 少し待つ
         yield return new WaitForSeconds(deadTime);
 
-        // イノシシを消す
         Destroy(gameObject);
     }
 
@@ -80,4 +95,6 @@ public class Boar : MonoBehaviour
             player.SetMovementLocked(false);
         }
     }
+
+
 }

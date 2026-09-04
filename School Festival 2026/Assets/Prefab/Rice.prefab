@@ -51,7 +51,6 @@ MonoBehaviour:
   minStageDisplayTime: 3
   spriteRenderer: {fileID: 2684524088454835666}
   emptySprite: {fileID: 0}
-  sproutSprite: {fileID: 4337684191699249041, guid: 63b404168c8eabf48a4283ef1e8a350e, type: 3}
   growingSprite: {fileID: 1801263428120863714, guid: 63b404168c8eabf48a4283ef1e8a350e, type: 3}
   readySprite: {fileID: -7855203551248514480, guid: 63b404168c8eabf48a4283ef1e8a350e, type: 3}
 --- !u!212 &2684524088454835666
