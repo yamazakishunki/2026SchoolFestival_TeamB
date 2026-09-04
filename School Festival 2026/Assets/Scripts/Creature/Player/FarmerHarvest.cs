@@ -19,10 +19,17 @@ public class FarmerHarvest : MonoBehaviour
     {
         if (isHarvesting)
         {
-            if (!Input.GetKey(harvestKey) || nearbyCrop == null || nearbyCrop.State != RiceCrop.CropState.Ready)
-            {
-                CancelHarvest();
-                return;
+            if (!Input.GetButton("Harvest")) 
+            { 
+                Debug.Log("Cancelled: button released"); CancelHarvest(); return;
+            }
+            if (nearbyCrop == null) 
+            { 
+                Debug.Log("Cancelled: nearbyCrop is null"); CancelHarvest(); return; 
+            }
+            if (nearbyCrop.State != RiceCrop.CropState.Ready) 
+            { 
+                Debug.Log("Cancelled: crop state is " + nearbyCrop.State); CancelHarvest(); return; 
             }
 
             holdTimer += Time.deltaTime;
@@ -33,11 +40,11 @@ public class FarmerHarvest : MonoBehaviour
                 CompleteHarvest();
             }
         }
-        else if (Input.GetKeyDown(harvestKey))
+        else if (Input.GetKeyDown(harvestKey) || Input.GetButton("Harvest"))
         {
             TryStartHarvest();
         }
-
+        Debug.Log(Input.GetButton("Harvest"));
         
     }
 

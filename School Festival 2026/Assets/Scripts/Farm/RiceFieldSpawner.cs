@@ -15,6 +15,9 @@ public class RiceFieldSpawner : MonoBehaviour
     [SerializeField] private Color gizmoColor = Color.green;
     [SerializeField] private float gizmoRadius = 0.3f;
 
+    [Header("Area")]
+    [SerializeField] private int areaId;
+
     private void Start()
     {
         SpawnField();
@@ -27,7 +30,11 @@ public class RiceFieldSpawner : MonoBehaviour
             for (int col = 0; col < columns; col++)
             {
                 Vector3 spawnPos = GetGridPosition(row, col);
-                Instantiate(riceCropPrefab, spawnPos, Quaternion.identity, transform);
+                GameObject cropObj = Instantiate(riceCropPrefab, spawnPos, Quaternion.identity, transform);
+                if (cropObj.TryGetComponent(out RiceCrop crop))
+                {
+                    crop.SetAreaId(areaId);
+                }
             }
         }
     }

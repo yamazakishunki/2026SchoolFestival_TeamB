@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Boar : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Boar : MonoBehaviour
     private bool isDead = false;
 
     private SpriteRenderer spriteRenderer;
+    private static readonly List<Boar> activeBoars = new List<Boar>();
 
     void Awake()
     {
@@ -96,5 +98,24 @@ public class Boar : MonoBehaviour
         }
     }
 
+    private void OnEnable() // NEW
+    {
+        activeBoars.Add(this);
+    }
+
+    private void OnDisable() // NEW
+    {
+        activeBoars.Remove(this);
+    }
+
+    public static void DestroyAll() // NEW
+    {
+        // Copy the list first since destroying triggers OnDisable, which would modify the list mid-loop
+        var copy = new List<Boar>(activeBoars);
+        foreach (var boar in copy)
+        {
+            Destroy(boar.gameObject);
+        }
+    }
 
 }

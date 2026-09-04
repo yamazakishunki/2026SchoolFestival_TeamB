@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CrowSpawner : MonoBehaviour
 { 
@@ -38,8 +39,18 @@ public class CrowSpawner : MonoBehaviour
 
     private void SpawnCrow()
     {
-        RiceCrop targetCrop = RiceCrop.GetRandomActiveCrop();
-        if (targetCrop == null) return; // no crop tiles registered ? skip this crow
+        RiceCrop targetCrop;
+        if (ItemEffectManager.Instance != null)
+        {
+            var blocked = GetCurrentlyBlockedAreas();
+            targetCrop = RiceCrop.GetRandomActiveCropExcludingAreas(blocked);
+        }
+        else
+        {
+            targetCrop = RiceCrop.GetRandomActiveCrop();
+        }
+
+        if (targetCrop == null) return;
 
         Vector2 targetPos = targetCrop.transform.position;
         Vector2 spawnPos = new Vector2(targetPos.x, targetPos.y + spawnHeightAboveScreen);
@@ -49,6 +60,15 @@ public class CrowSpawner : MonoBehaviour
         {
             crow.Initialize(targetCrop, spawnHeightAboveScreen);
         }
+    }
+    private HashSet<int> GetCurrentlyBlockedAreas()
+    {
+        var set = new HashSet<int>();
+        for (int i = 0; i < 4; i++)
+        {
+            if (ItemEffectManager.Instance.IsAreaBlocked(i)) set.Add(i);
+        }
+        return set;
     }
 }
 

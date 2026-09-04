@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -18,8 +17,15 @@ public class RiceCrop : MonoBehaviour
     [SerializeField] private Sprite readySprite;
 
     public CropState State { get; private set; }
-    private static readonly List<RiceCrop> activeCrops = new List<RiceCrop>();
-    private Coroutine growRoutine;
+    public int AreaId { get; private set; } // NEW ? which plot this crop belongs to (set by RiceFieldSpawner)
+    public bool IsHindered { get; set; } = false; // NEW ? true while a Crow is grounded on this tile
+
+    private static readonly List<RiceCrop> activeCrops = new List<RiceCrop>(); // NEW
+
+    private bool isGrowing = false;
+    private float growElapsed;
+    private float stage1Duration;
+    private float totalGrowDuration;
 
     private void Awake()
     {
@@ -27,25 +33,16 @@ public class RiceCrop : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-     
-
     private void OnEnable()
     {
-        activeCrops.Add(this); 
-        GameStateManager.OnFeverStart += ForceReadyImmediately; // existing, keep this
+        activeCrops.Add(this); // NEW
+        GameStateManager.OnFeverStart += ForceReady;
     }
 
     private void OnDisable()
     {
-        activeCrops.Remove(this); 
-        GameStateManager.OnFeverStart -= ForceReadyImmediately; // existing, keep this
-    }
-
-    // NEW ? lets CrowSpawner pick a random tile to target without an expensive FindObjectsOfType search
-    public static RiceCrop GetRandomActiveCrop()
-    {
-        if (activeCrops.Count == 0) return null;
-        return activeCrops[Random.Range(0, activeCrops.Count)];
+        activeCrops.Remove(this); // NEW
+        GameStateManager.OnFeverStart -= ForceReady;
     }
 
     private void Start()
@@ -53,47 +50,78 @@ public class RiceCrop : MonoBehaviour
         BeginGrowing();
     }
 
-    private void BeginGrowing()
+    public void SetAreaId(int id) // NEW ? called once by RiceFieldSpawner at spawn time
     {
-        if (growRoutine != null) StopCoroutine(growRoutine);
-        growRoutine = StartCoroutine(GrowSequence());
+        AreaId = id;
     }
 
-    private IEnumerator GrowSequence()
+    private void Update()
     {
-        // NEW: if Fever is already active when this crop starts regrowing, skip straight to Ready
-        if (GameStateManager.Instance != null && GameStateManager.Instance.CurrentState == GameStateManager.GameState.Fever)
+        if (!isGrowing) return;
+
+        growElapsed += Time.deltaTime;
+
+        if (State == CropState.Empty && growElapsed >= stage1Duration)
         {
-            SetState(CropState.Ready);
-            yield break;
+            SetState(CropState.Growing);
         }
 
-        float totalGrowTime = Random.Range(minGrowTime, maxGrowTime);
-
-        SetState(CropState.Empty);
-        float stage1Time = Mathf.Min(minStageDisplayTime, totalGrowTime * 0.4f);
-        yield return new WaitForSeconds(stage1Time);
-
-        SetState(CropState.Growing);
-        float stage2Time = Mathf.Max(minStageDisplayTime, totalGrowTime - stage1Time);
-        yield return new WaitForSeconds(stage2Time);
-
-        SetState(CropState.Ready);
+        if (growElapsed >= totalGrowDuration)
+        {
+            isGrowing = false;
+            SetState(CropState.Ready);
+        }
     }
 
-    // NEW: called on every crop the instant Fever starts, regardless of what stage it's currently in
-    private void ForceReadyImmediately()
+    private void BeginGrowing()
     {
-        if (growRoutine != null) StopCoroutine(growRoutine);
-        SetState(CropState.Ready);
+        growElapsed = 0f;
+        totalGrowDuration = Random.Range(minGrowTime, maxGrowTime);
+
+        // NEW ? Golden Sickle active when this crop starts a fresh cycle
+        if (ItemEffectManager.IsSickleActive)
+        {
+            totalGrowDuration = Mathf.Max(0.5f, totalGrowDuration - ItemEffectManager.SickleReduction);
+        }
+
+        stage1Duration = Mathf.Min(minStageDisplayTime, totalGrowDuration * 0.4f);
+
+        isGrowing = true;
+        SetState(CropState.Empty);
+    }
+
+    // NEW ? called by Golden Sickle to instantly shorten a crop already mid-growth
+    public void ReduceRemainingGrowTime(float amount)
+    {
+        if (!isGrowing) return;
+        totalGrowDuration = Mathf.Max(growElapsed + 0.1f, totalGrowDuration - amount); // keep at least a tiny sliver of time left, avoids an instant same-frame snap feeling glitchy
+        stage1Duration = Mathf.Min(stage1Duration, totalGrowDuration);
     }
 
     public bool TryHarvest()
     {
         if (State != CropState.Ready) return false;
-
         BeginGrowing();
         return true;
+    }
+
+    // NEW ? destroys progress regardless of current state (used by Boar/Crow)
+    public void DestroyAndRegrow()
+    {
+        BeginGrowing();
+    }
+
+    // Renamed from ForceReadyImmediately ? now also used by Fertilizer, not just Fever
+    private void ForceReady()
+    {
+        isGrowing = false;
+        SetState(CropState.Ready);
+    }
+
+    // NEW ? public wrapper so Fertilizer can call it on specific crops (Fever uses the private one via the event)
+    public void ForceReadyPublic()
+    {
+        ForceReady();
     }
 
     private void SetState(CropState newState)
@@ -108,8 +136,45 @@ public class RiceCrop : MonoBehaviour
         };
     }
 
-    public void DestroyAndRegrow()
+    // ---- Static queries used by CrowSpawner / FertilizerItem ----
+
+    public static RiceCrop GetRandomActiveCrop() // NEW
     {
-        BeginGrowing(); // stops any in-progress coroutine and restarts from Empty
+        if (activeCrops.Count == 0) return null;
+        return activeCrops[Random.Range(0, activeCrops.Count)];
+    }
+
+    public static RiceCrop GetRandomActiveCropExcludingAreas(HashSet<int> blockedAreas) // NEW ? for CrowSpawner
+    {
+        List<RiceCrop> eligible = new List<RiceCrop>();
+        foreach (var crop in activeCrops)
+        {
+            if (!blockedAreas.Contains(crop.AreaId))
+                eligible.Add(crop);
+        }
+        if (eligible.Count == 0) return null;
+        return eligible[Random.Range(0, eligible.Count)];
+    }
+
+    public static List<RiceCrop> GetEligibleForFertilizer() // NEW
+    {
+        List<RiceCrop> eligible = new List<RiceCrop>();
+        foreach (var crop in activeCrops)
+        {
+            if (crop.State != CropState.Ready && !crop.IsHindered)
+                eligible.Add(crop);
+        }
+        return eligible;
+    }
+
+    public static List<RiceCrop> GetActiveCropsInArea(int areaId) // NEW ? used by Scarecrow to destroy crows in that area
+    {
+        List<RiceCrop> result = new List<RiceCrop>();
+        foreach (var crop in activeCrops)
+        {
+            if (crop.AreaId == areaId)
+                result.Add(crop);
+        }
+        return result;
     }
 }

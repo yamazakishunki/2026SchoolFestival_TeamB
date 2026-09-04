@@ -12,10 +12,15 @@ public class PlayerCtrl : MonoBehaviour
 
     [SerializeField] private SpriteRenderer spriteRenderer; // NEW
 
+    private float baseSpeed; // NEW
+    private Coroutine speedBoostRoutine; // NEW
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>(); // NEW
+        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        baseSpeed = movespeed; // NEW
     }
 
     void Update()
@@ -68,6 +73,20 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (IsStunned) return; 
         StartCoroutine(StunRoutine(duration));
+    }
+
+    public void ApplySpeedBoost(float multiplier, float duration) // NEW
+    {
+        if (speedBoostRoutine != null) StopCoroutine(speedBoostRoutine);
+        speedBoostRoutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedBoostRoutine(float multiplier, float duration)
+    {
+        movespeed = baseSpeed * multiplier;
+        yield return new WaitForSeconds(duration);
+        movespeed = baseSpeed;
+        speedBoostRoutine = null;
     }
 
     private IEnumerator StunRoutine(float duration)

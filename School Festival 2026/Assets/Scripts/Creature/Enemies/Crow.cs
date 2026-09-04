@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Crow : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Crow : MonoBehaviour
     private Vector2 targetPosition;
     private Vector2 flyAwayPosition;
     private float groundedTimer;
+
+    private static readonly List<Crow> activeCrows = new List<Crow>();
 
     public void Initialize(RiceCrop crop, float spawnHeightAboveScreen)
     {
@@ -59,6 +62,7 @@ public class Crow : MonoBehaviour
 
         if (targetCrop != null)
         {
+
             targetCrop.DestroyAndRegrow();
         }
     }
@@ -75,6 +79,37 @@ public class Crow : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             FlyAway(); // scared off early, cuts the grounded timer short
+        }
+    }
+
+    private void OnEnable() // NEW
+    {
+        activeCrows.Add(this);
+    }
+
+    private void OnDisable() // NEW
+    {
+        activeCrows.Remove(this);
+    }
+
+    public static void DestroyAll() // NEW
+    {
+        var copy = new List<Crow>(activeCrows);
+        foreach (var crow in copy)
+        {
+            Destroy(crow.gameObject);
+        }
+    }
+
+    public static void DestroyCrowsInArea(int areaId) // NEW ? used by Scarecrow
+    {
+        var copy = new List<Crow>(activeCrows);
+        foreach (var crow in copy)
+        {
+            if (crow.targetCrop != null && crow.targetCrop.AreaId == areaId)
+            {
+                Destroy(crow.gameObject);
+            }
         }
     }
 }

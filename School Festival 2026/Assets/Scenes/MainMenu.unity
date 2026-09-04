@@ -825,15 +825,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7550849848927354027, guid: 91c9a6323f8805bbda71a2caadf48337, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7550849848927354027, guid: 91c9a6323f8805bbda71a2caadf48337, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7550849848927354027, guid: 91c9a6323f8805bbda71a2caadf48337, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7550849848927354027, guid: 91c9a6323f8805bbda71a2caadf48337, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1735,6 +1735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939046380}
   - component: {fileID: 939046381}
+  - component: {fileID: 939046382}
   m_Layer: 0
   m_Name: MainMenuManager
   m_TagString: Untagged
@@ -1770,6 +1771,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   explanationSceneName: Explanation
+--- !u!114 &939046382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939046379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311eebb551019da438e65aa31980ed87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuSelection
+  firstSelectedButton: {fileID: 448306390}
 --- !u!1 &1173042687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreboardPanel
   panel: {fileID: 2006817001}
   slideDuration: 0.5
-  hiddenPosition: {x: 520, y: 0}
+  hiddenPosition: {x: 600, y: 0}
   shownPosition: {x: 0, y: 0}
 --- !u!224 &2006817001 stripped
 RectTransform:
