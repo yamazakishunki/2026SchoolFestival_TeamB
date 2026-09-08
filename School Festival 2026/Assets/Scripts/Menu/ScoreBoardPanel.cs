@@ -5,23 +5,44 @@ public class ScoreboardPanel : MonoBehaviour
 {
     [SerializeField] private RectTransform panel;
     [SerializeField] private float slideDuration = 0.4f;
-    [SerializeField] private Vector2 hiddenPosition = new Vector2(1500f, 0f); // off-screen right
-    [SerializeField] private Vector2 shownPosition = new Vector2(0f, 0f);     // on-screen
+    [SerializeField] private Vector2 hiddenPosition = new Vector2(1200f, 0f);
+    [SerializeField] private Vector2 shownPosition = new Vector2(0f, 0f);
 
     private Coroutine slideRoutine;
+    private bool isShown = false; 
+    private bool justOpened = false; 
 
     private void Awake()
     {
-        panel.anchoredPosition = hiddenPosition; // start hidden off-screen
+        panel.anchoredPosition = hiddenPosition;
+    }
+
+    private void Update() 
+    {
+        if (!isShown) return;
+
+        if (justOpened)
+        {
+            justOpened = false; 
+            return;
+        }
+
+        if (Input.anyKeyDown)
+        {
+            HideScoreboard();
+        }
     }
 
     public void ShowScoreboard()
     {
+        isShown = true;
+        justOpened = true; 
         StartSlide(shownPosition);
     }
 
     public void HideScoreboard()
     {
+        isShown = false; 
         StartSlide(hiddenPosition);
     }
 
@@ -40,7 +61,7 @@ public class ScoreboardPanel : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / slideDuration);
-            t = t * t * (3f - 2f * t); // smoothstep easing
+            t = t * t * (3f - 2f * t);
             panel.anchoredPosition = Vector2.Lerp(start, target, t);
             yield return null;
         }
