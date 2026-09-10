@@ -14,10 +14,4 @@ public class MainMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(gameSceneName);
     }
-
-    public void OnExitButton()
-    {
-        Debug.Log("Exit pressed"); // shows in Editor since Application.Quit does nothing there
-        Application.Quit();
-    }
 }
