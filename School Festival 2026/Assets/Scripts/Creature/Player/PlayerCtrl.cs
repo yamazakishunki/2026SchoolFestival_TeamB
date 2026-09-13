@@ -9,6 +9,7 @@ public class PlayerCtrl : MonoBehaviour
     private Vector2 movement;
     private bool movementLocked = false; // NEW
     public bool IsStunned {get; private set;}
+    private float speedMultiplier = 1f;
 
     [SerializeField] private SpriteRenderer spriteRenderer; // NEW
 
@@ -20,7 +21,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
-        baseSpeed = movespeed; // NEW
+        baseSpeed = movespeed;
     }
 
     void Update()
@@ -73,6 +74,12 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (IsStunned) return; 
         StartCoroutine(StunRoutine(duration));
+    }
+
+    public void SetSpeedMultiplier(float multiplier) // NEW — replaces ApplySpeedBoost
+    {
+    speedMultiplier = multiplier;
+    movespeed = baseSpeed * multiplier;
     }
 
     public void ApplySpeedBoost(float multiplier, float duration) // NEW

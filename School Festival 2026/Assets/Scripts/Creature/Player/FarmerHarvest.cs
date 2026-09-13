@@ -1,35 +1,36 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FarmerHarvest : MonoBehaviour
 {
     [SerializeField] private FarmerInventory inventory;
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private KeyCode harvestKey = KeyCode.Space;
+    [SerializeField] private HarvestProgressUI progUI;
     [SerializeField] private float harvestDuration = 2f;
     [SerializeField] private float feverHarvestTimeMultiplier = 0.5f;
-    [SerializeField] private HarvestProgressUI progUI;
+    [SerializeField] private float scareOffDuration = 2f; // NEW
+    [SerializeField] private float crowDetectRadius = 0.6f; // NEW — since crows aren't detected via trigger anymore
 
     private RiceCrop nearbyCrop;
+    private Crow nearbyCrow; // NEW
     private float holdTimer = 0f;
     private bool isHarvesting = false;
+    private bool isScaringCrow = false; // NEW
     private float currentHarvestDuration;
 
     private void Update()
     {
+        // NEW — look for a nearby grounded crow every frame when idle, since crows move and aren't trigger-detected
+        if (!isHarvesting && !isScaringCrow)
+        {
+            nearbyCrow = Crow.GetGroundedCrowNear(transform.position, crowDetectRadius);
+        }
+
         if (isHarvesting)
         {
-            if (!Input.GetButton("Harvest")) 
-            { 
-                Debug.Log("Cancelled: button released"); CancelHarvest(); return;
-            }
-            if (nearbyCrop == null) 
-            { 
-                Debug.Log("Cancelled: nearbyCrop is null"); CancelHarvest(); return; 
-            }
-            if (nearbyCrop.State != RiceCrop.CropState.Ready) 
-            { 
-                Debug.Log("Cancelled: crop state is " + nearbyCrop.State); CancelHarvest(); return; 
+            if (!Input.GetButton("Harvest") || nearbyCrop == null || nearbyCrop.State != RiceCrop.CropState.Ready)
+            {
+                CancelHarvest();
+                return;
             }
 
             holdTimer += Time.deltaTime;
@@ -40,12 +41,34 @@ public class FarmerHarvest : MonoBehaviour
                 CompleteHarvest();
             }
         }
-        else if (Input.GetKeyDown(harvestKey) || Input.GetButton("Harvest"))
+        else if (isScaringCrow) // NEW branch
         {
-            TryStartHarvest();
+            if (!Input.GetButton("Harvest") || nearbyCrow == null || nearbyCrow.State != Crow.CrowState.Grounded)
+            {
+                CancelScareOff();
+                return;
+            }
+
+            holdTimer += Time.deltaTime;
+            progUI.SetProgress(holdTimer / scareOffDuration);
+
+            if (holdTimer >= scareOffDuration)
+            {
+                CompleteScareOff();
+            }
         }
-        Debug.Log(Input.GetButton("Harvest"));
-        
+        else if (Input.GetButtonDown("Harvest"))
+        {
+            // CHANGED — crow now checked first, since it's the actively-decaying threat
+            if (nearbyCrow != null)
+            {
+                TryStartScareOff();
+            }
+            else if (nearbyCrop != null && nearbyCrop.State == RiceCrop.CropState.Ready)
+            {
+                TryStartHarvest();
+            }
+        }
     }
 
     private void TryStartHarvest()
@@ -53,7 +76,7 @@ public class FarmerHarvest : MonoBehaviour
         if (nearbyCrop == null) return;
         if (nearbyCrop.State != RiceCrop.CropState.Ready) return;
         if (inventory.IsFull) return;
-        if (playerCtrl.IsStunned) return; 
+        if (playerCtrl.IsStunned) return;
 
         isHarvesting = true;
         holdTimer = 0f;
@@ -83,6 +106,39 @@ public class FarmerHarvest : MonoBehaviour
     private void EndHarvestState()
     {
         isHarvesting = false;
+        holdTimer = 0f;
+        playerCtrl.SetMovementLocked(false);
+        progUI.Hide();
+    }
+
+    // ---- NEW: scare-off methods, mirroring the harvest methods above ----
+
+    private void TryStartScareOff()
+    {
+        if (nearbyCrow == null) return;
+        if (playerCtrl.IsStunned) return;
+
+        isScaringCrow = true;
+        holdTimer = 0f;
+
+        playerCtrl.SetMovementLocked(true);
+        progUI.Show();
+    }
+
+    private void CompleteScareOff()
+    {
+        nearbyCrow.ScareOff();
+        EndScareOffState();
+    }
+
+    private void CancelScareOff()
+    {
+        EndScareOffState();
+    }
+
+    private void EndScareOffState()
+    {
+        isScaringCrow = false;
         holdTimer = 0f;
         playerCtrl.SetMovementLocked(false);
         progUI.Hide();

@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class ItemEffectManager : MonoBehaviour
 {
@@ -10,59 +8,34 @@ public class ItemEffectManager : MonoBehaviour
     public static bool IsSickleActive { get; private set; }
     public static float SickleReduction { get; private set; }
 
-    // ---- Scarecrow ----
-    private readonly Dictionary<int, Coroutine> blockedAreaRoutines = new Dictionary<int, Coroutine>();
-    private readonly HashSet<int> blockedAreas = new HashSet<int>();
+    public static void SetSickleActive(bool active, float reduction)
+    {
+        IsSickleActive = active;
+        SickleReduction = reduction;
+    }
+
+    // ---- Scarecrow (now single global area, no dictionary) ----
+    private int blockedAreaId = -1; // -1 = no area blocked
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void ActivateGoldenSickle(float reduction, float duration)
+    public void BlockAreaGlobal(int areaId)
     {
-        // Instantly shave time off every crop currently growing
-        foreach (var crop in RiceCrop.GetEligibleForFertilizer()) // reuses "not ready" query ? sickle shouldn't touch already-ready crops anyway
-        {
-            crop.ReduceRemainingGrowTime(reduction);
-        }
-
-        SickleReduction = reduction;
-        IsSickleActive = true;
-        StartCoroutine(SickleTimer(duration));
+        Crow.DestroyCrowsInArea(areaId);
+        blockedAreaId = areaId;
     }
 
-    private IEnumerator SickleTimer(float duration)
+    public void UnblockAreaGlobal()
     {
-        yield return new WaitForSeconds(duration);
-        IsSickleActive = false;
+        blockedAreaId = -1;
     }
 
     public bool IsAreaBlocked(int areaId)
     {
-        return blockedAreas.Contains(areaId);
-    }
-
-    public void BlockArea(int areaId, float duration)
-    {
-        // Destroy any crow currently targeting a crop in this area
-        Crow.DestroyCrowsInArea(areaId);
-
-        blockedAreas.Add(areaId);
-
-        // If already blocked, restart the timer instead of stacking
-        if (blockedAreaRoutines.TryGetValue(areaId, out Coroutine existing))
-        {
-            StopCoroutine(existing);
-        }
-        blockedAreaRoutines[areaId] = StartCoroutine(AreaBlockTimer(areaId, duration));
-    }
-
-    private IEnumerator AreaBlockTimer(int areaId, float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        blockedAreas.Remove(areaId);
-        blockedAreaRoutines.Remove(areaId);
+        return areaId == blockedAreaId;
     }
 
     // ---- Gun ----
