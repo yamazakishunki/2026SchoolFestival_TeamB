@@ -10,13 +10,18 @@ public class EndingManager : MonoBehaviour
     [SerializeField] private Sprite lowTierSprite;   // below 3000
     [SerializeField] private Sprite midTierSprite;   // 3000 - 3999
     [SerializeField] private Sprite topTierSprite;   // 4000+
+   
 
     [Header("Name Submission")]
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [SerializeField] private Text warningtext;
+    [SerializeField] private Text FinalScore;
 
     private void Start()
     {
+        FinalScore.text = "スコア : " + GameData.score;
+
         int score = GameData.score;
 
         if (score >= 4000)
@@ -38,9 +43,9 @@ public class EndingManager : MonoBehaviour
     {
         string enteredName = nameInputField.text;
 
-        if (string.IsNullOrWhiteSpace(enteredName))
+        if(string.IsNullOrWhiteSpace(enteredName))
         {
-            enteredName = "Unknown Farmer";
+            warningtext.text = "名前を入力してください！";
         }
 
         // Load existing saved scores, append the new one, save back

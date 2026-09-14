@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 6755879938959963868}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 649.2892, y: 513.2949, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: 649.3412, y: 513.3396, z: 0}
+  m_LocalScale: {x: 0.37323, y: 0.37323, z: 0.37323}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -186,3 +186,4 @@ MonoBehaviour:
   flashInterval: 0.15
   speedMultiplier: 1.5
   duration: 8
+  statusIcon: {fileID: -8705658455517951556, guid: 88960ac0ee8d5924d9a58f868d4e9826, type: 3}
