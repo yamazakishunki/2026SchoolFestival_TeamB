@@ -1,24 +1,30 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using GabrielBigardi.SpriteAnimator;
+
 
 public class Boar : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
-    [Header("Death Settings")]
-    public Sprite deadSprite;
-    public float deadTime = 0.3f;
-
     private Vector2 moveDirection;
     private bool isDead = false;
 
     private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteAnimator animator;
     private static readonly List<Boar> activeBoars = new List<Boar>();
+
+    private float stunDuration = 3f;
+    
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (animator == null)
+        {
+            animator = GetComponent<SpriteAnimator>();
+        }
     }
 
     public void SetDirection(Vector2 direction)
@@ -33,6 +39,7 @@ public class Boar : MonoBehaviour
         {
             spriteRenderer.flipX = false; // moving right
         }
+        animator.PlayIfNotPlaying("Boar");
     }
 
     void Update()
@@ -64,31 +71,26 @@ public class Boar : MonoBehaviour
 
             if (player != null)
             {
-                player.SetMovementLocked(true);
+                player.Stun(stunDuration);
+                
                 player.StartCoroutine(ReleasePlayer(player));
             }
 
-            StartCoroutine(Die());
+            Die();
         }
     }
 
-    IEnumerator Die()
+    private void Die()
     {
         isDead = true;
 
         moveDirection = Vector2.zero;
 
-        if (deadSprite != null)
-        {
-            spriteRenderer.sprite = deadSprite;
-        }
-
-        yield return new WaitForSeconds(deadTime);
-
-        Destroy(gameObject);
+        animator.Play("BoarDeath");
+        animator.SetOnComplete(() => Destroy(gameObject));
     }
 
-    IEnumerator ReleasePlayer(PlayerCtrl player)
+    private IEnumerator ReleasePlayer(PlayerCtrl player)
     {
         yield return new WaitForSeconds(3f);
 

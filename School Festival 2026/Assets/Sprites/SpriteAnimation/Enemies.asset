@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77fafcc6bd2ee94ebe9ac341b986e7a, type: 3}
+  m_Name: Enemies
+  m_EditorClassIdentifier: GabrielBigardi.SpriteAnimator::GabrielBigardi.SpriteAnimator.SpriteAnimationObject
+  SpriteAnimations:
+  - Name: TruckSide
+    FPS: 10
+    Frames:
+    - {fileID: 4903311482477293845, guid: df31fa33a131b6e4486936033b09358e, type: 3}
+    - {fileID: -1290283785066258836, guid: df31fa33a131b6e4486936033b09358e, type: 3}
+    - {fileID: 3259203419242858207, guid: df31fa33a131b6e4486936033b09358e, type: 3}
+    - {fileID: 5010253632914125801, guid: df31fa33a131b6e4486936033b09358e, type: 3}
+    - {fileID: 8780905911579677155, guid: df31fa33a131b6e4486936033b09358e, type: 3}
+    SpriteAnimationType: 0
+  - Name: TruckFront
+    FPS: 10
+    Frames:
+    - {fileID: 3072012545052706577, guid: 6176c65c53e05b04fa6b5fe3317bd8ba, type: 3}
+    - {fileID: 2652682703886448955, guid: 6176c65c53e05b04fa6b5fe3317bd8ba, type: 3}
+    - {fileID: -7528209748568915477, guid: 6176c65c53e05b04fa6b5fe3317bd8ba, type: 3}
+    - {fileID: -8982106674758474462, guid: 6176c65c53e05b04fa6b5fe3317bd8ba, type: 3}
+    - {fileID: 319963690384369215, guid: 6176c65c53e05b04fa6b5fe3317bd8ba, type: 3}
+    - {fileID: -6787390244441360212, guid: 6176c65c53e05b04fa6b5fe3317bd8ba, type: 3}
+    SpriteAnimationType: 0
+  - Name: TruckRear
+    FPS: 10
+    Frames:
+    - {fileID: 6758111769534340705, guid: 7fe91d1627058bd408a40effa9d8b32f, type: 3}
+    - {fileID: -7148857214780526725, guid: 7fe91d1627058bd408a40effa9d8b32f, type: 3}
+    - {fileID: -2664519067806458179, guid: 7fe91d1627058bd408a40effa9d8b32f, type: 3}
+    - {fileID: 4667644006856122730, guid: 7fe91d1627058bd408a40effa9d8b32f, type: 3}
+    - {fileID: 7450192615843218695, guid: 7fe91d1627058bd408a40effa9d8b32f, type: 3}
+    - {fileID: 1499414521098069333, guid: 7fe91d1627058bd408a40effa9d8b32f, type: 3}
+    SpriteAnimationType: 0
+  - Name: Boar
+    FPS: 8
+    Frames:
+    - {fileID: -4562551623142024973, guid: 4ebd53387458ce241905130d916b65c9, type: 3}
+    - {fileID: 3681898037418467949, guid: 4ebd53387458ce241905130d916b65c9, type: 3}
+    - {fileID: 1369059845400186295, guid: 4ebd53387458ce241905130d916b65c9, type: 3}
+    SpriteAnimationType: 0
+  - Name: BoarDeath
+    FPS: 6
+    Frames:
+    - {fileID: 2553980408422807837, guid: ad115a95cacd3484a8c2bd0a8f7dc3e6, type: 3}
+    - {fileID: 6269312996497044824, guid: ad115a95cacd3484a8c2bd0a8f7dc3e6, type: 3}
+    - {fileID: -5775657420383292381, guid: ad115a95cacd3484a8c2bd0a8f7dc3e6, type: 3}
+    - {fileID: -1104851711917323849, guid: ad115a95cacd3484a8c2bd0a8f7dc3e6, type: 3}
+    - {fileID: -7613864469585462468, guid: ad115a95cacd3484a8c2bd0a8f7dc3e6, type: 3}
+    - {fileID: 6950433608998431017, guid: ad115a95cacd3484a8c2bd0a8f7dc3e6, type: 3}
+    SpriteAnimationType: 1

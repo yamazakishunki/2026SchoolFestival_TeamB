@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4284305475815216367}
   - component: {fileID: 8970252852119774840}
   - component: {fileID: 4399349438869035233}
+  - component: {fileID: 1182107609292311637}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Untagged
@@ -108,9 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TruckMover
   spriteRenderer: {fileID: 4284305475815216367}
-  frontSprite: {fileID: 5175032743853045101, guid: ca9448bae5e6e84458d57e81f059139a, type: 3}
-  rearSprite: {fileID: -3871052737092327340, guid: ca9448bae5e6e84458d57e81f059139a, type: 3}
-  sideSprite: {fileID: 7061801754131594114, guid: 88960ac0ee8d5924d9a58f868d4e9826, type: 3}
+  animator: {fileID: 1182107609292311637}
   frontZoneTransform: {fileID: 1324387620407702740}
   frontZoneCollider: {fileID: 6200659127110380794}
   verticalZoneOffset: 0.5
@@ -144,6 +143,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1182107609292311637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328801727408190516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4337bea670e194ca021e2a54e31bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GabrielBigardi.SpriteAnimator::GabrielBigardi.SpriteAnimator.SpriteAnimator
+  _playAutomatically: 1
+  _spriteAnimationObject: {fileID: 11400000, guid: 51da9bf63a87371468d746bea3256f6c, type: 2}
+  _spriteRenderer: {fileID: 4284305475815216367}
 --- !u!1 &5776274685929949375
 GameObject:
   m_ObjectHideFlags: 0

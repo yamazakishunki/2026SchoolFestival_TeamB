@@ -1,11 +1,10 @@
 using UnityEngine;
+using GabrielBigardi.SpriteAnimator;
 
 public class TruckMover : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite frontSprite;
-    [SerializeField] private Sprite rearSprite;
-    [SerializeField] private Sprite sideSprite;
+    [SerializeField] private SpriteAnimator animator;
 
     [Header("Front Zone Vertical Movement")]
     [SerializeField] private Transform frontZoneTransform;
@@ -19,14 +18,20 @@ public class TruckMover : MonoBehaviour
 
     private Vector2 endPos;
     private float speed;
-    private GameObject[] itemPrefabs;
+    private GameObject[] commonItemPrefabs;
+    private GameObject[] rareItemPrefabs;
+    private float rareDropChance;
     private float dropChancePerSecond;
 
-    public void Initialize(Vector2 target, float moveSpeed, GameObject[] items, float dropChance, Vector2 direction)
+
+    public void Initialize(Vector2 target, float moveSpeed, GameObject[] commonItems, GameObject[] rareItems,
+    float rareChance, float dropChance, Vector2 direction)
     {
         endPos = target;
         speed = moveSpeed;
-        itemPrefabs = items;
+        commonItemPrefabs = commonItems;
+        rareItemPrefabs = rareItems;
+        rareDropChance = rareChance;
         dropChancePerSecond = dropChance;
 
         SetSpriteForDirection(direction);
@@ -37,12 +42,12 @@ public class TruckMover : MonoBehaviour
     {
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            spriteRenderer.sprite = sideSprite;
+            animator.Play("TruckSide");
             spriteRenderer.flipX = direction.x < 0;
         }
         else
         {
-            spriteRenderer.sprite = direction.y < 0 ? frontSprite : rearSprite;
+            animator.Play(direction.y < 0 ? "TruckFront" : "TruckRear");
             spriteRenderer.flipX = false;
         }
     }
@@ -69,7 +74,7 @@ public class TruckMover : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
 
-        if (itemPrefabs != null && itemPrefabs.Length > 0 && Random.value < dropChancePerSecond * Time.deltaTime)
+        if (Random.value < dropChancePerSecond * Time.deltaTime)
         {
             DropItem();
         }
@@ -82,7 +87,21 @@ public class TruckMover : MonoBehaviour
 
     private void DropItem()
     {
-        GameObject prefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
+        GameObject[] pool;
+
+        // Roll for rare first; fall back to common if the roll fails or the rare pool is empty
+        if (rareItemPrefabs != null && rareItemPrefabs.Length > 0 && Random.value < rareDropChance)
+        {
+            pool = rareItemPrefabs;
+        }
+        else
+        {
+            pool = commonItemPrefabs;
+        }
+
+        if (pool == null || pool.Length == 0) return;
+
+        GameObject prefab = pool[Random.Range(0, pool.Length)];
         Instantiate(prefab, transform.position, Quaternion.identity);
     }
 }

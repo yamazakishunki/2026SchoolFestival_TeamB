@@ -1,22 +1,61 @@
 fileFormatVersion: 2
-guid: df31fa33a131b6e4486936033b09358e
+guid: 7fe91d1627058bd408a40effa9d8b32f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4903311482477293845
-    second: TruckMoving_0
+      213: 6758111769534340705
+    second: TruckRear 1_0
   - first:
-      213: -1290283785066258836
-    second: TruckMoving_1
+      213: 8156819243114394222
+    second: TruckRear 1_1
   - first:
-      213: 3259203419242858207
-    second: TruckMoving_2
+      213: -7148857214780526725
+    second: TruckRear 1_2
   - first:
-      213: 5010253632914125801
-    second: TruckMoving_3
+      213: 3858204178772523792
+    second: TruckRear 1_3
   - first:
-      213: 8780905911579677155
-    second: TruckMoving_4
+      213: -2664519067806458179
+    second: TruckRear 1_4
+  - first:
+      213: 4667644006856122730
+    second: TruckRear 1_5
+  - first:
+      213: 7450192615843218695
+    second: TruckRear 1_6
+  - first:
+      213: -8398062343584505117
+    second: TruckRear 1_7
+  - first:
+      213: 1499414521098069333
+    second: TruckRear 1_8
+  - first:
+      213: 509320675728196902
+    second: TruckRear 1_9
+  - first:
+      213: -7998879668848235448
+    second: TruckRear 1_10
+  - first:
+      213: -333098588189127839
+    second: TruckRear 1_11
+  - first:
+      213: 4979915868080701083
+    second: TruckRear 1_12
+  - first:
+      213: 8899642976911314306
+    second: TruckRear 1_13
+  - first:
+      213: -162209613144631634
+    second: TruckRear 1_14
+  - first:
+      213: 7031327446811854576
+    second: TruckRear 1_15
+  - first:
+      213: -2706084473974665573
+    second: TruckRear 1_16
+  - first:
+      213: -1223979650515420527
+    second: TruckRear 1_17
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,13 +177,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TruckMoving_0
+      name: TruckRear 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 603
-        height: 302
+        x: 119
+        y: 12
+        width: 380
+        height: 312
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 511372080df0c0440800000000000000
-      internalID: 4903311482477293845
+      spriteID: 16e1b7f29d2a9cd50800000000000000
+      internalID: 6758111769534340705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_1
+      name: TruckRear 1_2
       rect:
         serializedVersion: 2
-        x: 660
-        y: 3
-        width: 603
-        height: 302
+        x: 769
+        y: 12
+        width: 380
+        height: 312
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c6edda3dbbdf71ee0800000000000000
-      internalID: -1290283785066258836
+      spriteID: b7fa40b4d382acc90800000000000000
+      internalID: -7148857214780526725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_2
+      name: TruckRear 1_4
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 3
-        width: 603
-        height: 302
+        x: 1421
+        y: 12
+        width: 380
+        height: 312
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd685b6ed340b3d20800000000000000
-      internalID: 3259203419242858207
+      spriteID: dbe142a660ab50bd0800000000000000
+      internalID: -2664519067806458179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_3
+      name: TruckRear 1_5
       rect:
         serializedVersion: 2
-        x: 1980
-        y: 3
-        width: 603
-        height: 302
+        x: 2078
+        y: 12
+        width: 380
+        height: 312
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e3f478322ff78540800000000000000
-      internalID: 5010253632914125801
+      spriteID: a61e3a67e7dc6c040800000000000000
+      internalID: 4667644006856122730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_4
+      name: TruckRear 1_6
       rect:
         serializedVersion: 2
-        x: 2640
-        y: 3
-        width: 603
-        height: 302
+        x: 2732
+        y: 11
+        width: 380
+        height: 312
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,8 +280,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e195d1476b0cd970800000000000000
-      internalID: 8780905911579677155
+      spriteID: 705c29716b6646760800000000000000
+      internalID: 7450192615843218695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TruckRear 1_8
+      rect:
+        serializedVersion: 2
+        x: 3377
+        y: 12
+        width: 380
+        height: 312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 555ec1d009dfec410800000000000000
+      internalID: 1499414521098069333
       vertices: []
       indices: 
       edges: []
@@ -251,7 +312,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: afdb7ee4ae0076c4daa330b0d2d748d0
+    spriteID: 70222311a4f864748ae1429e366eb31b
     internalID: 0
     vertices: []
     indices: 
@@ -261,11 +322,24 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TruckMoving_0: 4903311482477293845
-      TruckMoving_1: -1290283785066258836
-      TruckMoving_2: 3259203419242858207
-      TruckMoving_3: 5010253632914125801
-      TruckMoving_4: 8780905911579677155
+      TruckRear 1_0: 6758111769534340705
+      TruckRear 1_1: 8156819243114394222
+      TruckRear 1_10: -7998879668848235448
+      TruckRear 1_11: -333098588189127839
+      TruckRear 1_12: 4979915868080701083
+      TruckRear 1_13: 8899642976911314306
+      TruckRear 1_14: -162209613144631634
+      TruckRear 1_15: 7031327446811854576
+      TruckRear 1_16: -2706084473974665573
+      TruckRear 1_17: -1223979650515420527
+      TruckRear 1_2: -7148857214780526725
+      TruckRear 1_3: 3858204178772523792
+      TruckRear 1_4: -2664519067806458179
+      TruckRear 1_5: 4667644006856122730
+      TruckRear 1_6: 7450192615843218695
+      TruckRear 1_7: -8398062343584505117
+      TruckRear 1_8: 1499414521098069333
+      TruckRear 1_9: 509320675728196902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

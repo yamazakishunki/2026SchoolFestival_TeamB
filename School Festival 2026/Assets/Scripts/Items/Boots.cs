@@ -16,6 +16,6 @@ public class BootsItem : ItemPickup
             duration,
             onActivate: () => player.SetSpeedMultiplier(speedMultiplier),
             onExpire: () => player.SetSpeedMultiplier(1f)
-        );
+        ) ;
     }
 }

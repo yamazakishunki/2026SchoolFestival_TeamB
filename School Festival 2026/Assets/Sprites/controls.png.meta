@@ -1,22 +1,31 @@
 fileFormatVersion: 2
-guid: df31fa33a131b6e4486936033b09358e
+guid: 06a4219539655e844a10f52451454c2b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4903311482477293845
-    second: TruckMoving_0
+      213: 6782813536761691038
+    second: controls_0
   - first:
-      213: -1290283785066258836
-    second: TruckMoving_1
+      213: 3303988218376537383
+    second: controls_1
   - first:
-      213: 3259203419242858207
-    second: TruckMoving_2
+      213: 225358914316224342
+    second: controls_2
   - first:
-      213: 5010253632914125801
-    second: TruckMoving_3
+      213: -7687483754779569326
+    second: controls_3
   - first:
-      213: 8780905911579677155
-    second: TruckMoving_4
+      213: 7366178677551348873
+    second: controls_4
+  - first:
+      213: 6680207597328628390
+    second: controls_5
+  - first:
+      213: -6309609620086278508
+    second: controls_6
+  - first:
+      213: -4224854497718506852
+    second: controls_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,111 +147,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TruckMoving_0
+      name: controls_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 603
-        height: 302
+        x: 189
+        y: 769
+        width: 432
+        height: 122
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 511372080df0c0440800000000000000
-      internalID: 4903311482477293845
+      spriteID: e9b346c89f4612e50800000000000000
+      internalID: 6782813536761691038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_1
+      name: controls_1
       rect:
         serializedVersion: 2
-        x: 660
-        y: 3
-        width: 603
-        height: 302
+        x: 159
+        y: 439
+        width: 482
+        height: 322
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c6edda3dbbdf71ee0800000000000000
-      internalID: -1290283785066258836
+      spriteID: 725c86287cf1add20800000000000000
+      internalID: 3303988218376537383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_2
+      name: controls_2
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 3
-        width: 603
-        height: 302
+        x: 1109
+        y: 569
+        width: 182
+        height: 182
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd685b6ed340b3d20800000000000000
-      internalID: 3259203419242858207
+      spriteID: 65749c21db2a02300800000000000000
+      internalID: 225358914316224342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_3
+      name: controls_3
       rect:
         serializedVersion: 2
-        x: 1980
-        y: 3
-        width: 603
-        height: 302
+        x: 1299
+        y: 569
+        width: 182
+        height: 182
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e3f478322ff78540800000000000000
-      internalID: 5010253632914125801
+      spriteID: 25317cb4142905590800000000000000
+      internalID: -7687483754779569326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_4
+      name: controls_4
       rect:
         serializedVersion: 2
-        x: 2640
-        y: 3
-        width: 603
-        height: 302
+        x: 159
+        y: 99
+        width: 482
+        height: 322
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e195d1476b0cd970800000000000000
-      internalID: 8780905911579677155
+      spriteID: 98c3183ca7ce93660800000000000000
+      internalID: 7366178677551348873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: controls_5
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 99
+        width: 232
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aa73a0aa6dd4bc50800000000000000
+      internalID: 6680207597328628390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: controls_6
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 369
+        width: 162
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 496be53fa73cf68a0800000000000000
+      internalID: -6309609620086278508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: controls_7
+      rect:
+        serializedVersion: 2
+        x: 1299
+        y: 349
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9ae6c3f73d4e55c0800000000000000
+      internalID: -4224854497718506852
       vertices: []
       indices: 
       edges: []
@@ -251,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: afdb7ee4ae0076c4daa330b0d2d748d0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -261,11 +336,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TruckMoving_0: 4903311482477293845
-      TruckMoving_1: -1290283785066258836
-      TruckMoving_2: 3259203419242858207
-      TruckMoving_3: 5010253632914125801
-      TruckMoving_4: 8780905911579677155
+      controls_0: 6782813536761691038
+      controls_1: 3303988218376537383
+      controls_2: 225358914316224342
+      controls_3: -7687483754779569326
+      controls_4: 7366178677551348873
+      controls_5: 6680207597328628390
+      controls_6: -6309609620086278508
+      controls_7: -4224854497718506852
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

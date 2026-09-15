@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: GabrielBigardi.SpriteAnimator::GabrielBigardi.SpriteAnimator.SpriteAnimationObject
   SpriteAnimations:
   - Name: Walking
-    FPS: 10
+    FPS: 7
     Frames:
     - {fileID: -3250164278248464269, guid: eac976b2bc4179b429f9d2eb4f3e5425, type: 3}
     - {fileID: -7552538039586609111, guid: eac976b2bc4179b429f9d2eb4f3e5425, type: 3}
@@ -32,4 +32,18 @@ MonoBehaviour:
     - {fileID: -8757670935888160136, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
     - {fileID: 7915251984800347513, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
     - {fileID: 4180040824273858238, guid: 7144e9996cc91114b92d248afc4b6bbb, type: 3}
+    SpriteAnimationType: 0
+  - Name: Stun
+    FPS: 5
+    Frames:
+    - {fileID: -2706537065021129611, guid: ec299d25909fc774f80218b27ad31e29, type: 3}
+    - {fileID: -1876551041295685568, guid: ec299d25909fc774f80218b27ad31e29, type: 3}
+    - {fileID: -3878486791380440390, guid: ec299d25909fc774f80218b27ad31e29, type: 3}
+    SpriteAnimationType: 0
+  - Name: Idle
+    FPS: 3
+    Frames:
+    - {fileID: 978942612559604503, guid: aa2e4256eef398e4a9a6c7b7d01f23d9, type: 3}
+    - {fileID: 3499389992042037492, guid: aa2e4256eef398e4a9a6c7b7d01f23d9, type: 3}
+    - {fileID: 6272215952258405886, guid: aa2e4256eef398e4a9a6c7b7d01f23d9, type: 3}
     SpriteAnimationType: 0

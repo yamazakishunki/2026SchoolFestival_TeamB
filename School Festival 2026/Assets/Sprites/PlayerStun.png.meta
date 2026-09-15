@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: df31fa33a131b6e4486936033b09358e
+guid: ec299d25909fc774f80218b27ad31e29
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4903311482477293845
-    second: TruckMoving_0
+      213: 2476894970739127796
+    second: PlayerStun_0
   - first:
-      213: -1290283785066258836
-    second: TruckMoving_1
+      213: -4752912885267866645
+    second: PlayerStun_1
   - first:
-      213: 3259203419242858207
-    second: TruckMoving_2
+      213: 6779353734899722790
+    second: PlayerStun_2
   - first:
-      213: 5010253632914125801
-    second: TruckMoving_3
+      213: 1404296476732243141
+    second: PlayerStun_3
   - first:
-      213: 8780905911579677155
-    second: TruckMoving_4
+      213: -2706537065021129611
+    second: PlayerStun_4
+  - first:
+      213: -1876551041295685568
+    second: PlayerStun_5
+  - first:
+      213: -3878486791380440390
+    second: PlayerStun_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,111 +144,155 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TruckMoving_0
+      name: PlayerStun_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 603
-        height: 302
+        x: 123
+        y: 259
+        width: 32
+        height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 511372080df0c0440800000000000000
-      internalID: 4903311482477293845
+      spriteID: 4f57bdc4ad2bf5220800000000000000
+      internalID: 2476894970739127796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_1
+      name: PlayerStun_1
       rect:
         serializedVersion: 2
-        x: 660
-        y: 3
-        width: 603
-        height: 302
+        x: 419
+        y: 239
+        width: 32
+        height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c6edda3dbbdf71ee0800000000000000
-      internalID: -1290283785066258836
+      spriteID: beb5b31b9e24a0eb0800000000000000
+      internalID: -4752912885267866645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_2
+      name: PlayerStun_2
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 3
-        width: 603
-        height: 302
+        x: 579
+        y: 259
+        width: 32
+        height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd685b6ed340b3d20800000000000000
-      internalID: 3259203419242858207
+      spriteID: 62a6a67ad4a151e50800000000000000
+      internalID: 6779353734899722790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_3
+      name: PlayerStun_3
       rect:
         serializedVersion: 2
-        x: 1980
-        y: 3
-        width: 603
-        height: 302
+        x: 895
+        y: 259
+        width: 32
+        height: 22
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e3f478322ff78540800000000000000
-      internalID: 5010253632914125801
+      spriteID: 5cc35fe84301d7310800000000000000
+      internalID: 1404296476732243141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_4
+      name: PlayerStun_4
       rect:
         serializedVersion: 2
-        x: 2640
-        y: 3
-        width: 603
-        height: 302
+        x: 3
+        y: 9
+        width: 292
+        height: 242
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e195d1476b0cd970800000000000000
-      internalID: 8780905911579677155
+      spriteID: 57cbcf311e2707ad0800000000000000
+      internalID: -2706537065021129611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStun_5
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 9
+        width: 292
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0486ea435c625f5e0800000000000000
+      internalID: -1876551041295685568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerStun_6
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 9
+        width: 292
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aba69b5ffc8dc2ac0800000000000000
+      internalID: -3878486791380440390
       vertices: []
       indices: 
       edges: []
@@ -251,7 +301,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: afdb7ee4ae0076c4daa330b0d2d748d0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -261,11 +311,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TruckMoving_0: 4903311482477293845
-      TruckMoving_1: -1290283785066258836
-      TruckMoving_2: 3259203419242858207
-      TruckMoving_3: 5010253632914125801
-      TruckMoving_4: 8780905911579677155
+      PlayerStun_0: 2476894970739127796
+      PlayerStun_1: -4752912885267866645
+      PlayerStun_2: 6779353734899722790
+      PlayerStun_3: 1404296476732243141
+      PlayerStun_4: -2706537065021129611
+      PlayerStun_5: -1876551041295685568
+      PlayerStun_6: -3878486791380440390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

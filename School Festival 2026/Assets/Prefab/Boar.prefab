@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6801875445901724745}
   - component: {fileID: 847720079520074455}
   - component: {fileID: 4856741575027751714}
+  - component: {fileID: 7009944263752222261}
   m_Layer: 0
   m_Name: Boar
   m_TagString: Untagged
@@ -183,3 +184,19 @@ MonoBehaviour:
   moveSpeed: 5.25
   deadSprite: {fileID: -638443171332479689, guid: 88960ac0ee8d5924d9a58f868d4e9826, type: 3}
   deadTime: 0.3
+  animator: {fileID: 0}
+--- !u!114 &7009944263752222261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444201172038523866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4337bea670e194ca021e2a54e31bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GabrielBigardi.SpriteAnimator::GabrielBigardi.SpriteAnimator.SpriteAnimator
+  _playAutomatically: 1
+  _spriteAnimationObject: {fileID: 11400000, guid: 51da9bf63a87371468d746bea3256f6c, type: 2}
+  _spriteRenderer: {fileID: 8898542010725006769}

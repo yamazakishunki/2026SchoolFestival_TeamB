@@ -1,4 +1,5 @@
 using UnityEngine;
+using GabrielBigardi.SpriteAnimator;
 
 public class FarmerHarvest : MonoBehaviour
 {
@@ -7,14 +8,15 @@ public class FarmerHarvest : MonoBehaviour
     [SerializeField] private HarvestProgressUI progUI;
     [SerializeField] private float harvestDuration = 2f;
     [SerializeField] private float feverHarvestTimeMultiplier = 0.5f;
-    [SerializeField] private float scareOffDuration = 2f; // NEW
-    [SerializeField] private float crowDetectRadius = 0.6f; // NEW — since crows aren't detected via trigger anymore
+    [SerializeField] private float scareOffDuration = 2f; 
+    [SerializeField] private float crowDetectRadius = 0.6f;
+    [SerializeField] private SpriteAnimator spriteAnimator;
 
     private RiceCrop nearbyCrop;
-    private Crow nearbyCrow; // NEW
+    private Crow nearbyCrow; 
     private float holdTimer = 0f;
     private bool isHarvesting = false;
-    private bool isScaringCrow = false; // NEW
+    private bool isScaringCrow = false; 
     private float currentHarvestDuration;
 
     private void Update()
@@ -86,6 +88,7 @@ public class FarmerHarvest : MonoBehaviour
         currentHarvestDuration = isFever ? harvestDuration * feverHarvestTimeMultiplier : harvestDuration;
 
         playerCtrl.SetMovementLocked(true);
+        spriteAnimator.Play("Harvesting");
         progUI.Show();
     }
 

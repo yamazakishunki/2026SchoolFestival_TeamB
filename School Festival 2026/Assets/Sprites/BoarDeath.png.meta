@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: df31fa33a131b6e4486936033b09358e
+guid: ad115a95cacd3484a8c2bd0a8f7dc3e6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4903311482477293845
-    second: TruckMoving_0
+      213: 2553980408422807837
+    second: BoarDeath_0
   - first:
-      213: -1290283785066258836
-    second: TruckMoving_1
+      213: 6269312996497044824
+    second: BoarDeath_1
   - first:
-      213: 3259203419242858207
-    second: TruckMoving_2
+      213: -5775657420383292381
+    second: BoarDeath_2
   - first:
-      213: 5010253632914125801
-    second: TruckMoving_3
+      213: -1104851711917323849
+    second: BoarDeath_3
   - first:
-      213: 8780905911579677155
-    second: TruckMoving_4
+      213: -7613864469585462468
+    second: BoarDeath_4
+  - first:
+      213: 6950433608998431017
+    second: BoarDeath_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TruckMoving_0
+      name: BoarDeath_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
-        width: 603
-        height: 302
+        y: 0
+        width: 244
+        height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 511372080df0c0440800000000000000
-      internalID: 4903311482477293845
+      spriteID: d19395f56af817320800000000000000
+      internalID: 2553980408422807837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_1
+      name: BoarDeath_1
       rect:
         serializedVersion: 2
-        x: 660
-        y: 3
-        width: 603
-        height: 302
+        x: 292
+        y: 0
+        width: 244
+        height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c6edda3dbbdf71ee0800000000000000
-      internalID: -1290283785066258836
+      spriteID: 85532fd34f2110750800000000000000
+      internalID: 6269312996497044824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_2
+      name: BoarDeath_2
       rect:
         serializedVersion: 2
-        x: 1320
-        y: 3
-        width: 603
-        height: 302
+        x: 584
+        y: 0
+        width: 244
+        height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd685b6ed340b3d20800000000000000
-      internalID: 3259203419242858207
+      spriteID: 32474b94d2eb8dfa0800000000000000
+      internalID: -5775657420383292381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_3
+      name: BoarDeath_3
       rect:
         serializedVersion: 2
-        x: 1980
-        y: 3
-        width: 603
-        height: 302
+        x: 876
+        y: 0
+        width: 244
+        height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,20 +222,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e3f478322ff78540800000000000000
-      internalID: 5010253632914125801
+      spriteID: 7b98fa5c837caa0f0800000000000000
+      internalID: -1104851711917323849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TruckMoving_4
+      name: BoarDeath_4
       rect:
         serializedVersion: 2
-        x: 2640
-        y: 3
-        width: 603
-        height: 302
+        x: 1168
+        y: 0
+        width: 244
+        height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,8 +244,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e195d1476b0cd970800000000000000
-      internalID: 8780905911579677155
+      spriteID: c3bf36ada9e165690800000000000000
+      internalID: -7613864469585462468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoarDeath_5
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 0
+        width: 244
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 929a94bda86e47060800000000000000
+      internalID: 6950433608998431017
       vertices: []
       indices: 
       edges: []
@@ -251,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: afdb7ee4ae0076c4daa330b0d2d748d0
+    spriteID: 29a61553a9aac454aa87b0d6af18f131
     internalID: 0
     vertices: []
     indices: 
@@ -261,11 +286,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TruckMoving_0: 4903311482477293845
-      TruckMoving_1: -1290283785066258836
-      TruckMoving_2: 3259203419242858207
-      TruckMoving_3: 5010253632914125801
-      TruckMoving_4: 8780905911579677155
+      BoarDeath_0: 2553980408422807837
+      BoarDeath_1: 6269312996497044824
+      BoarDeath_2: -5775657420383292381
+      BoarDeath_3: -1104851711917323849
+      BoarDeath_4: -7613864469585462468
+      BoarDeath_5: 6950433608998431017
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

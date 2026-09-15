@@ -184,6 +184,6 @@ MonoBehaviour:
   icon: {fileID: 8279819551763339774, guid: 88960ac0ee8d5924d9a58f868d4e9826, type: 3}
   flashStartTime: 7
   flashInterval: 0.15
-  growthReduction: 1
+  growthReduction: 1.5
   duration: 10
   statusIcon: {fileID: 8279819551763339774, guid: 88960ac0ee8d5924d9a58f868d4e9826, type: 3}

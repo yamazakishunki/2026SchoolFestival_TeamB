@@ -21,7 +21,9 @@ public class TruckManager : MonoBehaviour
     [SerializeField] private float spawnBuffer = 1f;
 
     [Header("Item Drops")]
-    [SerializeField] private GameObject[] itemPrefabs;
+    [SerializeField] private GameObject[] commonItemPrefabs; 
+    [SerializeField] private GameObject[] rareItemPrefabs;   
+    [SerializeField][Range(0f, 1f)] private float rareDropChance = 0.12f; 
     [SerializeField] private float dropChancePerSecond = 0.3f;
 
     private void Start()
@@ -68,14 +70,14 @@ public class TruckManager : MonoBehaviour
         }
     }
 
-    private void SpawnTruckAt(Vector2 startPos, Vector2 endPos) // renamed from SpawnTruck, now takes positions directly
+    private void SpawnTruckAt(Vector2 startPos, Vector2 endPos)
     {
         GameObject truck = Instantiate(truckPrefab, startPos, Quaternion.identity);
         Vector2 direction = (endPos - startPos).normalized;
 
         if (truck.TryGetComponent(out TruckMover mover))
         {
-            mover.Initialize(endPos, truckSpeed, itemPrefabs, dropChancePerSecond, direction);
+            mover.Initialize(endPos, truckSpeed, commonItemPrefabs, rareItemPrefabs, rareDropChance, dropChancePerSecond, direction);
         }
     }
 

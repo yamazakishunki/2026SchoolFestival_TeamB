@@ -1,32 +1,35 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using GabrielBigardi.SpriteAnimator;
 
 public class PlayerCtrl : MonoBehaviour
 {
     public float movespeed;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private bool movementLocked = false; // NEW
+    private bool movementLocked = false; 
     public bool IsStunned {get; private set;}
     private float speedMultiplier = 1f;
 
-    [SerializeField] private SpriteRenderer spriteRenderer; // NEW
+    [SerializeField] private SpriteRenderer spriteRenderer; 
+    [SerializeField] public SpriteAnimator spriteAnimator;
 
-    private float baseSpeed; // NEW
-    private Coroutine speedBoostRoutine; // NEW
+    private float baseSpeed; 
+    private Coroutine speedBoostRoutine; 
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteAnimator == null) spriteAnimator = GetComponent<SpriteAnimator>();
         baseSpeed = movespeed;
     }
 
     void Update()
     {
-        if (movementLocked) // NEW
+        if (movementLocked)
         {
             movement = Vector2.zero;
             return;
@@ -42,6 +45,14 @@ public class PlayerCtrl : MonoBehaviour
             movement.Normalize();
         }
 
+        if (movement.sqrMagnitude > 0.01f)
+        {
+            spriteAnimator.PlayIfNotPlaying("Walking");
+        }
+        else
+        {
+            spriteAnimator.PlayIfNotPlaying("Idle");
+        }
         // NEW: flip sprite to face the direction of horizontal movement
         if (x < 0)
         {
@@ -80,6 +91,7 @@ public class PlayerCtrl : MonoBehaviour
     {
     speedMultiplier = multiplier;
     movespeed = baseSpeed * multiplier;
+        spriteAnimator.SetCurrentFrame(10);
     }
 
     public void ApplySpeedBoost(float multiplier, float duration) // NEW
@@ -93,6 +105,7 @@ public class PlayerCtrl : MonoBehaviour
         movespeed = baseSpeed * multiplier;
         yield return new WaitForSeconds(duration);
         movespeed = baseSpeed;
+        spriteAnimator.SetCurrentFrame(10);
         speedBoostRoutine = null;
     }
 
@@ -100,6 +113,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         IsStunned = true;
         SetMovementLocked(true);
+        spriteAnimator.Play("Stun");
         yield return new WaitForSeconds(duration);
         SetMovementLocked(false);
         IsStunned = false;
@@ -113,4 +127,5 @@ public class PlayerCtrl : MonoBehaviour
     {
         return movementLocked;
     }
+    
 }
