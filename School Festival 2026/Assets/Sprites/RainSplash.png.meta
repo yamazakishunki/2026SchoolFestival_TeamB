@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: 9e231ed41ac6a784d8d94ff150b35b45
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6896517158626309108
+    second: RainSplash_0
+  - first:
+      213: -6712644492537244067
+    second: RainSplash_1
+  - first:
+      213: 5692975589200010444
+    second: RainSplash_2
+  - first:
+      213: 7470076527524977144
+    second: RainSplash_3
+  - first:
+      213: 6192556686658778001
+    second: RainSplash_4
+  - first:
+      213: 1278429807355576635
+    second: RainSplash_5
+  - first:
+      213: 7877200205739218114
+    second: RainSplash_6
+  - first:
+      213: 4084494617142513726
+    second: RainSplash_7
+  - first:
+      213: -8442440950078533952
+    second: RainSplash_8
+  - first:
+      213: -3568400221544822430
+    second: RainSplash_9
+  - first:
+      213: -6346803952962105114
+    second: RainSplash_10
+  - first:
+      213: 7023044692573221762
+    second: RainSplash_11
+  - first:
+      213: 9018002613802031713
+    second: RainSplash_12
+  - first:
+      213: -8215375515583332124
+    second: RainSplash_13
+  - first:
+      213: -6181969398523207639
+    second: RainSplash_14
+  - first:
+      213: 5072896729338079888
+    second: RainSplash_15
+  - first:
+      213: -2625162468411643530
+    second: RainSplash_16
+  - first:
+      213: 3234606580967509559
+    second: RainSplash_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RainSplash_0
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 0
+        width: 233
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0c41bcfe26aa40a0800000000000000
+      internalID: -6896517158626309108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainSplash_1
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 0
+        width: 127
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d56d5de2665e7d2a0800000000000000
+      internalID: -6712644492537244067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainSplash_7
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 0
+        width: 212
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3056c5b63a0fa830800000000000000
+      internalID: 4084494617142513726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainSplash_8
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 0
+        width: 212
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce8b559fac66da80800000000000000
+      internalID: -8442440950078533952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8d921c29147129a4d98c7bcad751e507
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RainSplash_0: -6896517158626309108
+      RainSplash_1: -6712644492537244067
+      RainSplash_10: -6346803952962105114
+      RainSplash_11: 7023044692573221762
+      RainSplash_12: 9018002613802031713
+      RainSplash_13: -8215375515583332124
+      RainSplash_14: -6181969398523207639
+      RainSplash_15: 5072896729338079888
+      RainSplash_16: -2625162468411643530
+      RainSplash_17: 3234606580967509559
+      RainSplash_2: 5692975589200010444
+      RainSplash_3: 7470076527524977144
+      RainSplash_4: 6192556686658778001
+      RainSplash_5: 1278429807355576635
+      RainSplash_6: 7877200205739218114
+      RainSplash_7: 4084494617142513726
+      RainSplash_8: -8442440950078533952
+      RainSplash_9: -3568400221544822430
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -4,10 +4,10 @@ using System.Collections;
 
 public class FeverOverlay : MonoBehaviour
 {
-    [SerializeField] private Image overlayImage; // full-screen UI Image, covering the whole Canvas
+    [SerializeField] private Image overlayImage;
 
     [Header("Color Cycling")]
-    [SerializeField] private float hueCycleSpeed = 0.15f; // how fast colors shift (lower = slower)
+    [SerializeField] private float hueCycleSpeed = 0.15f;
     [SerializeField] private float saturation = 0.8f;
     [SerializeField] private float brightness = 1f;
 
@@ -32,7 +32,7 @@ public class FeverOverlay : MonoBehaviour
 
     private void Awake()
     {
-        SetAlpha(0f); // fully transparent/hidden at start
+        SetAlpha(0f);
     }
 
     private void ShowOverlay()
@@ -51,11 +51,9 @@ public class FeverOverlay : MonoBehaviour
     {
         while (true)
         {
-            // Hue cycles 0→1→0... continuously based on time
             float hue = Mathf.Repeat(Time.time * hueCycleSpeed, 1f);
             Color rainbowColor = Color.HSVToRGB(hue, saturation, brightness);
 
-            // Alpha still pulses independently for the "breathing" effect
             float pulseT = (Mathf.Sin(Time.time * pulseSpeed) + 1f) / 2f;
             rainbowColor.a = Mathf.Lerp(minAlpha, maxAlpha, pulseT);
 

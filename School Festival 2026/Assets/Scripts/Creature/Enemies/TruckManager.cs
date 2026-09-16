@@ -10,6 +10,7 @@ public class TruckManager : MonoBehaviour
     [SerializeField] private float spawnInterval = 17f;
     [SerializeField] private float truckSpeed = 4f;
 
+
     [Header("Warning Sign")]
     [SerializeField] private GameObject warningSignPrefab; 
     [SerializeField] private float warningDuration = 1.5f; 
@@ -19,6 +20,8 @@ public class TruckManager : MonoBehaviour
     [SerializeField] private float screenHalfWidth = 8f;
     [SerializeField] private float screenHalfHeight = 4.5f;
     [SerializeField] private float spawnBuffer = 1f;
+    [SerializeField] private float edgeOffsetX = 0f; // NEW ? shifts top/bottom spawn position sideways
+    [SerializeField] private float edgeOffsetY = 0f; // NEW ? shifts left/right spawn position up/down
 
     [Header("Item Drops")]
     [SerializeField] private GameObject[] commonItemPrefabs; 
@@ -54,9 +57,10 @@ public class TruckManager : MonoBehaviour
         SpawnTruckAt(startPos, endPos);
     }
 
-    private Vector2 GetWarningPosition(SpawnEdge edge, Vector2 truckSpawnPos) // NEW
+    private Vector2 GetWarningPosition(SpawnEdge edge, Vector2 truckSpawnPos)
     {
-        // Places the sign just inside the visible screen edge, aligned with the truck's travel line
+        // No changes needed here ? truckSpawnPos already includes the offset now,
+        // since it's passed in AFTER GetSpawnAndTargetPositions() already applied edgeOffsetX/Y
         switch (edge)
         {
             case SpawnEdge.Left:
@@ -65,7 +69,7 @@ public class TruckManager : MonoBehaviour
                 return new Vector2(screenHalfWidth - warningInset, truckSpawnPos.y);
             case SpawnEdge.Top:
                 return new Vector2(truckSpawnPos.x, screenHalfHeight - warningInset);
-            default: // Bottom
+            default:
                 return new Vector2(truckSpawnPos.x, -screenHalfHeight + warningInset);
         }
     }
@@ -86,19 +90,19 @@ public class TruckManager : MonoBehaviour
         switch (edge)
         {
             case SpawnEdge.Left:
-                start = new Vector2(-screenHalfWidth - spawnBuffer, 0);
+                start = new Vector2(-screenHalfWidth - spawnBuffer, 0+edgeOffsetY);
                 end = new Vector2(screenHalfWidth + spawnBuffer, start.y);
                 break;
             case SpawnEdge.Right:
-                start = new Vector2(screenHalfWidth + spawnBuffer, 0);
+                start = new Vector2(screenHalfWidth + spawnBuffer, 0+edgeOffsetY);
                 end = new Vector2(-screenHalfWidth - spawnBuffer, start.y);
                 break;
             case SpawnEdge.Top:
-                start = new Vector2(0, screenHalfHeight + spawnBuffer);
+                start = new Vector2(0+edgeOffsetX, screenHalfHeight + spawnBuffer);
                 end = new Vector2(start.x, -screenHalfHeight - spawnBuffer);
                 break;
             default: // Bottom
-                start = new Vector2(0, -screenHalfHeight - spawnBuffer);
+                start = new Vector2(0+edgeOffsetX, -screenHalfHeight - spawnBuffer);
                 end = new Vector2(start.x, screenHalfHeight + spawnBuffer);
                 break;
         }

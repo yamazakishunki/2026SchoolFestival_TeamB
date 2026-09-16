@@ -127,7 +127,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Game Screen
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5882353, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -135,9 +135,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 160
-      height: 90
-    spriteID: bca70c5995f685748b73b37519bb30c9
+      width: 136
+      height: 82
+    spriteID: 88a54f56f5cdce849860fb5551ddd8bc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -167,9 +167,9 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 0
-        width: 160
-        height: 90
-      spriteId: bca70c5995f685748b73b37519bb30c9
+        width: 136
+        height: 82
+      spriteId: 88a54f56f5cdce849860fb5551ddd8bc
     linkedCells: []
     tileCells: []
     tileSetIndex: 0

@@ -111,6 +111,9 @@ MonoBehaviour:
   flyUpSpeed: 5
   groundedDuration: 4.5
   arrivalThreshold: 0.05
+  flySprite: {fileID: 1047705490754127709, guid: 6d6f3d945af26b34084e297c1700828e, type: 3}
+  landSprite: {fileID: -3003729888050109267, guid: 2dae1e4c90ddaf3439b27742391215cd, type: 3}
+  render: {fileID: 8607869757065338486}
 --- !u!61 &7924982550858286275
 BoxCollider2D:
   m_ObjectHideFlags: 0
