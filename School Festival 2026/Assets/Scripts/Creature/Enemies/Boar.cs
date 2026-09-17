@@ -15,7 +15,7 @@ public class Boar : MonoBehaviour
     [SerializeField] private SpriteAnimator animator;
     private static readonly List<Boar> activeBoars = new List<Boar>();
 
-    private float stunDuration = 3f;
+    [SerializeField] private float boarStunDuration = 3f;
     
 
     void Awake()
@@ -59,6 +59,11 @@ public class Boar : MonoBehaviour
             crop.DestroyAndRegrow();
         }
 
+        if (other.TryGetComponent(out Crow crow))
+        {
+          crow.ScareOff();  
+        }
+
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerCtrl player = other.gameObject.GetComponent<PlayerCtrl>();
@@ -76,7 +81,7 @@ public class Boar : MonoBehaviour
 
                 if (player != null)
                 {
-                    player.Stun(3f); // CHANGED ? replaces the old manual SetMovementLocked + ReleasePlayer coroutine
+                    player.Stun(boarStunDuration);
                 }
 
                 Die();

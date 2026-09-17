@@ -18,7 +18,6 @@ public class Crow : MonoBehaviour
     private Vector2 targetPosition;
     private Vector2 flyAwayPosition;
     private float groundedTimer;
-    private bool wasScaredOff = false; // NEW
 
     private static readonly System.Collections.Generic.List<Crow> activeCrows = new System.Collections.Generic.List<Crow>();
 
@@ -89,7 +88,6 @@ public class Crow : MonoBehaviour
     public void ScareOff()
     {
         if (State != CrowState.Grounded) return;
-        wasScaredOff = true;
         FlyAway(); // crop is untouched — DestroyAndRegrow never gets called for this crow
     }
 
