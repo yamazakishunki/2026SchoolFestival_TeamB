@@ -3,16 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class ExplanationMenu : MonoBehaviour
 {
-    [SerializeField] private string gameSceneName = "Game";
     [SerializeField] private string mainMenuSceneName = "MainMenu";
 
-    public void OnStartButton()
+    private void Update() // NEW
     {
-        SceneManager.LoadScene(gameSceneName);
+        if (Input.GetButtonDown("Submit") || Input.GetKeyDown(KeyCode.Space)) // covers Enter, Space (if bound), and controller A/Cross by default
+        {
+            OnBackButton();
+        }
     }
 
     public void OnBackButton()
     {
         SceneManager.LoadScene(mainMenuSceneName);
     }
+
 }

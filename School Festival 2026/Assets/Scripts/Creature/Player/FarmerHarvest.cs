@@ -6,6 +6,7 @@ public class FarmerHarvest : MonoBehaviour
     [SerializeField] private FarmerInventory inventory;
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private HarvestProgressUI progUI;
+    [SerializeField] private ScareOffProgressUI crowProgUI;
     [SerializeField] private float harvestDuration = 2f;
     [SerializeField] private float feverHarvestTimeMultiplier = 0.5f;
     [SerializeField] private float scareOffDuration = 2f; 
@@ -29,7 +30,7 @@ public class FarmerHarvest : MonoBehaviour
 
         if (isHarvesting)
         {
-            if (!Input.GetButton("Harvest") || nearbyCrop == null || nearbyCrop.State != RiceCrop.CropState.Ready)
+            if (!Input.GetButton("Harvest") || nearbyCrop == null || nearbyCrop.State != RiceCrop.CropState.Ready || playerCtrl.IsStunned)
             {
                 CancelHarvest();
                 return;
@@ -45,14 +46,14 @@ public class FarmerHarvest : MonoBehaviour
         }
         else if (isScaringCrow) // NEW branch
         {
-            if (!Input.GetButton("Harvest") || nearbyCrow == null || nearbyCrow.State != Crow.CrowState.Grounded)
+            if (!Input.GetButton("Harvest")  || nearbyCrow == null || nearbyCrow.State != Crow.CrowState.Grounded || playerCtrl.IsStunned)
             {
                 CancelScareOff();
                 return;
             }
 
             holdTimer += Time.deltaTime;
-            progUI.SetProgress(holdTimer / scareOffDuration);
+            crowProgUI.SetProgress(holdTimer / scareOffDuration);
 
             if (holdTimer >= scareOffDuration)
             {
@@ -110,11 +111,14 @@ public class FarmerHarvest : MonoBehaviour
     {
         isHarvesting = false;
         holdTimer = 0f;
-        playerCtrl.SetMovementLocked(false);
+        if (!playerCtrl.IsStunned) // NEW — don't override the stun's own lock/unlock timing
+        {
+            playerCtrl.SetMovementLocked(false);
+        }
         progUI.Hide();
     }
 
-    // ---- NEW: scare-off methods, mirroring the harvest methods above ----
+    
 
     private void TryStartScareOff()
     {
@@ -125,7 +129,7 @@ public class FarmerHarvest : MonoBehaviour
         holdTimer = 0f;
 
         playerCtrl.SetMovementLocked(true);
-        progUI.Show();
+        crowProgUI.Show();
     }
 
     private void CompleteScareOff()
@@ -143,8 +147,11 @@ public class FarmerHarvest : MonoBehaviour
     {
         isScaringCrow = false;
         holdTimer = 0f;
-        playerCtrl.SetMovementLocked(false);
-        progUI.Hide();
+        if (!playerCtrl.IsStunned) // NEW — don't override the stun's own lock/unlock timing
+        {
+            playerCtrl.SetMovementLocked(false);
+        }
+        crowProgUI.Hide();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

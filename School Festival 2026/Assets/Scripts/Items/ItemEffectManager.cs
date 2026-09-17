@@ -14,8 +14,11 @@ public class ItemEffectManager : MonoBehaviour
         SickleReduction = reduction;
     }
 
-    // ---- Scarecrow (now single global area, no dictionary) ----
-    private int blockedAreaId = -1; // -1 = no area blocked
+    // ---- Scarecrow  ----
+    private int blockedAreaId = -1; 
+
+    public static event System.Action<int> OnAreaBlocked;   
+    public static event System.Action OnAreaUnblocked;
 
     private void Awake()
     {
@@ -26,11 +29,13 @@ public class ItemEffectManager : MonoBehaviour
     {
         Crow.DestroyCrowsInArea(areaId);
         blockedAreaId = areaId;
+        OnAreaBlocked?.Invoke(areaId);
     }
 
     public void UnblockAreaGlobal()
     {
         blockedAreaId = -1;
+        OnAreaUnblocked?.Invoke();
     }
 
     public bool IsAreaBlocked(int areaId)

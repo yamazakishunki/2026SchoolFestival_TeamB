@@ -41,7 +41,13 @@ public class RiceFieldSpawner : MonoBehaviour
 
     private Vector3 GetGridPosition(int row, int col)
     {
-        return transform.position + new Vector3(col * horizontalSpacing, -row * verticalSpacing, 0f);
+        float totalWidth = horizontalSpacing * (columns - 1);
+        float totalHeight = verticalSpacing * (rows - 1);
+
+        float startX = -totalWidth / 2f;
+        float startY = totalHeight / 2f;
+
+        return transform.position + new Vector3(startX + col * horizontalSpacing, startY - row * verticalSpacing, 0f);
     }
 
     // Runs in the Editor even when NOT playing — draws in the Scene view only

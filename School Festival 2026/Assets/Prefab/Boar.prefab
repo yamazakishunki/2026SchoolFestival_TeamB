@@ -153,7 +153,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -182,9 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boar
   moveSpeed: 5.25
-  deadSprite: {fileID: -638443171332479689, guid: 88960ac0ee8d5924d9a58f868d4e9826, type: 3}
-  deadTime: 0.3
-  animator: {fileID: 0}
+  animator: {fileID: 7009944263752222261}
 --- !u!114 &7009944263752222261
 MonoBehaviour:
   m_ObjectHideFlags: 0

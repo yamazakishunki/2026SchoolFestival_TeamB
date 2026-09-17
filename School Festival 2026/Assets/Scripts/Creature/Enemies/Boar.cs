@@ -58,25 +58,29 @@ public class Boar : MonoBehaviour
         {
             crop.DestroyAndRegrow();
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision) // stays as-is, still handles the Player
-    {
-        if (isDead)
-            return;
-
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            PlayerCtrl player = collision.gameObject.GetComponent<PlayerCtrl>();
+            PlayerCtrl player = other.gameObject.GetComponent<PlayerCtrl>();
 
-            if (player != null)
+            if (player != null && player.IsInvincible)
             {
-                player.Stun(stunDuration);
-                
-                player.StartCoroutine(ReleasePlayer(player));
+                return;
             }
 
-            Die();
+            if (other.gameObject.CompareTag("Player"))
+            {
+                player = other.gameObject.GetComponent<PlayerCtrl>();
+
+                if (player != null && player.IsInvincible) return; // skip entirely during i-frames
+
+                if (player != null)
+                {
+                    player.Stun(3f); // CHANGED ? replaces the old manual SetMovementLocked + ReleasePlayer coroutine
+                }
+
+                Die();
+            }
         }
     }
 

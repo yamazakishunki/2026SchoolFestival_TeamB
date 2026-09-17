@@ -8,8 +8,11 @@ public class PlayerCtrl : MonoBehaviour
     public float movespeed;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private bool movementLocked = false; 
+    private bool movementLocked = false;
+    public bool IsInvincible { get; private set; }
     public bool IsStunned {get; private set;}
+    [SerializeField] private float iFrameDuration = 1f;
+    [SerializeField] private float blinkInterval = 0.1f;
     private float speedMultiplier = 1f;
 
     [SerializeField] private SpriteRenderer spriteRenderer; 
@@ -83,7 +86,11 @@ public class PlayerCtrl : MonoBehaviour
     }
     public void Stun(float duration)
     {
-        if (IsStunned) return; 
+        Debug.Log("Stun called. IsStunned=" + IsStunned + " IsInvincible=" + IsInvincible);
+        if (IsStunned || IsInvincible)
+        {
+            return;
+        }
         StartCoroutine(StunRoutine(duration));
     }
 
@@ -113,19 +120,30 @@ public class PlayerCtrl : MonoBehaviour
     {
         IsStunned = true;
         SetMovementLocked(true);
-        spriteAnimator.Play("Stun");
+        spriteAnimator.Play("Stun"); 
         yield return new WaitForSeconds(duration);
         SetMovementLocked(false);
         IsStunned = false;
+
+        IsInvincible = true;
+        yield return StartCoroutine(BlinkDuringInvincibility());
+        IsInvincible = false;
+        spriteRenderer.enabled = true;
     }
     public bool IsMovementLocked()
     {
         return movementLocked;
     }
 
-    public bool IsInvincible()
+    private IEnumerator BlinkDuringInvincibility() // NEW
     {
-        return movementLocked;
+        float elapsed = 0f;
+        while (elapsed < iFrameDuration)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(blinkInterval);
+            elapsed += blinkInterval;
+        }
     }
-    
+
 }

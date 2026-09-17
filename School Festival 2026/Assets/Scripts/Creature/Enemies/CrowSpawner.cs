@@ -6,16 +6,56 @@ public class CrowSpawner : MonoBehaviour
 { 
     public GameObject crowPrefab;
 
-    [Header("Wave Timing")]
+    [Header("1st Half Wave Timing")]
     public float minSpawnInterval = 8f;
     public float maxSpawnInterval = 15f;
 
-    [Header("Crows Per Wave")]
+    [Header("1st Half Crows Per Wave")]
     public int minCrowsPerWave = 1;
     public int maxCrowsPerWave = 3;
 
+    [Header("2nd Half Wave Timing")] 
+    public float rainMinSpawnInterval = 5f;
+    public float rainMaxSpawnInterval = 9f;
+
+    [Header("2nd Half Crows Per Wave")] 
+    public int rainMinCrowsPerWave = 2;
+    public int rainMaxCrowsPerWave = 4;
+
     [Header("Spawn Position")]
     public float spawnHeightAboveScreen = 6f; // how far above the target the crow starts
+
+    private bool spawningPaused = false;
+    private bool isRaining = false;
+
+    private void OnEnable() 
+    {
+        GameStateManager.OnFeverStart += PauseSpawning;
+        GameStateManager.OnRainingStart += ResumeSpawning;
+        GameStateManager.OnRainingStart += EnableRainSettings;
+    }
+
+    private void OnDisable() 
+    {
+        GameStateManager.OnFeverStart -= PauseSpawning;
+        GameStateManager.OnRainingStart -= ResumeSpawning;
+        GameStateManager.OnRainingStart -= EnableRainSettings;
+    }
+
+    private void PauseSpawning() 
+    {
+        spawningPaused = true;
+    }
+
+    private void ResumeSpawning() 
+    {
+        spawningPaused = false;
+    }
+
+    private void EnableRainSettings() 
+    {
+        isRaining = true;
+    }
 
     private void Start()
     {
@@ -26,9 +66,15 @@ public class CrowSpawner : MonoBehaviour
     {
         while (true)
         {
+            float minInterval = isRaining ? rainMinSpawnInterval : minSpawnInterval; 
+            float maxInterval = isRaining ? rainMaxSpawnInterval : maxSpawnInterval;
             float wait = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(wait);
 
+            if (spawningPaused) continue;
+
+            int minCount = isRaining ? rainMinCrowsPerWave : minCrowsPerWave; 
+            int maxCount = isRaining ? rainMaxCrowsPerWave : maxCrowsPerWave;
             int count = Random.Range(minCrowsPerWave, maxCrowsPerWave + 1);
             for (int i = 0; i < count; i++)
             {
