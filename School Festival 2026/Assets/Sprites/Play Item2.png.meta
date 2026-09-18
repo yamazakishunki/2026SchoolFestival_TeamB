@@ -143,7 +143,7 @@ TextureImporter:
         width: 412
         height: 482
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,12 +161,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 569
-        y: 259
-        width: 392
-        height: 232
+        y: 25
+        width: 408
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 3, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -178,55 +178,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Play Item2_2
-      rect:
-        serializedVersion: 2
-        x: 599
-        y: 59
-        width: 82
-        height: 142
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 121918bcb59185120800000000000000
-      internalID: 2402698283249144097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Play Item2_3
-      rect:
-        serializedVersion: 2
-        x: 719
-        y: 29
-        width: 222
-        height: 212
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1725d57899f3bcd90800000000000000
-      internalID: -7076492460849016207
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3a6ca54b3de69e54c81d13f937a8369e
     internalID: 0
     vertices: []
     indices: 

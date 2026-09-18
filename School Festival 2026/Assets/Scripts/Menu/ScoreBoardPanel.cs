@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class ScoreboardPanel : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class ScoreboardPanel : MonoBehaviour
     [SerializeField] private float slideDuration = 0.4f;
     [SerializeField] private Vector2 hiddenPosition = new Vector2(1200f, 0f);
     [SerializeField] private Vector2 shownPosition = new Vector2(0f, 0f);
+    [SerializeField] private InputAction action;
 
     private Coroutine slideRoutine;
     private bool isShown = false; 
@@ -27,7 +29,7 @@ public class ScoreboardPanel : MonoBehaviour
             return;
         }
 
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Return))
         {
             HideScoreboard();
         }
