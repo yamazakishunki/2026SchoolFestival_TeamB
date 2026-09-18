@@ -115,6 +115,7 @@ public class RiceCrop : MonoBehaviour
     private void ForceReady()
     {
         isGrowing = false;
+        minStageDisplayTime = 0.5f;
         SetState(CropState.Ready);
     }
 

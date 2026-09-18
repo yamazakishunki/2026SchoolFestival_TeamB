@@ -9,6 +9,9 @@ public class TruckManager : MonoBehaviour
     [SerializeField] private GameObject truckPrefab;
     [SerializeField] private float spawnInterval = 17f;
     [SerializeField] private float truckSpeed = 4f;
+    [SerializeField] private AudioClip truckSound;
+    [Range(0.0f, 1.0f)][SerializeField] private float volume;
+    private bool spawningPaused = false;
 
 
     [Header("Warning Sign")]
@@ -43,18 +46,37 @@ public class TruckManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        GameStateManager.OnFeverStart += PauseSpawning;   
+    }
+
+    private void OnDisable()
+    {
+        GameStateManager.OnFeverStart -= PauseSpawning;
+    }
+
+    private void PauseSpawning() 
+    {
+        spawningPaused = true;
+    }
+
+
     private IEnumerator SpawnTruckWithWarning() 
     {
-        SpawnEdge edge = (SpawnEdge)Random.Range(0, 4);
-        GetSpawnAndTargetPositions(edge, out Vector2 startPos, out Vector2 endPos);
+        if (!spawningPaused)
+        {
+            SpawnEdge edge = (SpawnEdge)Random.Range(0, 4);
+            GetSpawnAndTargetPositions(edge, out Vector2 startPos, out Vector2 endPos);
 
-        Vector2 warningPos = GetWarningPosition(edge, startPos);
-        GameObject warningSign = Instantiate(warningSignPrefab, warningPos, Quaternion.identity);
+            Vector2 warningPos = GetWarningPosition(edge, startPos);
+            GameObject warningSign = Instantiate(warningSignPrefab, warningPos, Quaternion.identity);
 
-        yield return new WaitForSeconds(warningDuration);
+            yield return new WaitForSeconds(warningDuration);
 
-        Destroy(warningSign);
-        SpawnTruckAt(startPos, endPos);
+            Destroy(warningSign);
+            SpawnTruckAt(startPos, endPos);
+        }
     }
 
     private Vector2 GetWarningPosition(SpawnEdge edge, Vector2 truckSpawnPos)
@@ -82,6 +104,7 @@ public class TruckManager : MonoBehaviour
         if (truck.TryGetComponent(out TruckMover mover))
         {
             mover.Initialize(endPos, truckSpeed, commonItemPrefabs, rareItemPrefabs, rareDropChance, dropChancePerSecond, direction);
+            AudioManager.Instance.PlaySFX(truckSound, volume);
         }
     }
 

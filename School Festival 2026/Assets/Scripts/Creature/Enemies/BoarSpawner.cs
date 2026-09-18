@@ -24,6 +24,9 @@ public class BoarSpawner : MonoBehaviour
     private bool spawningPaused = false;
     private bool isRaining = false;
 
+    [SerializeField] private AudioClip boarNoise;
+    [Range(0.0f, 1.0f)][SerializeField] private float volume;
+
     private void OnEnable()
     {
         GameStateManager.OnFeverStart += PauseSpawning;
@@ -70,6 +73,7 @@ public class BoarSpawner : MonoBehaviour
 
     private void SpawnBoar()
     {
+        
         Camera cam = Camera.main;
 
         if (cam == null)
@@ -77,6 +81,8 @@ public class BoarSpawner : MonoBehaviour
             Debug.LogWarning("Main Camera not found");
             return;
         }
+
+       
 
         float width = cam.orthographicSize * cam.aspect;
 
@@ -92,6 +98,7 @@ public class BoarSpawner : MonoBehaviour
 
         GameObject boarObject = Instantiate(boarPrefab, spawnPosition, Quaternion.identity);
         Boar boar = boarObject.GetComponent<Boar>();
+        AudioManager.Instance.PlaySFX(boarNoise, volume);
 
         if (boar != null)
         {

@@ -2721,7 +2721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneMusicTrigger
   sceneMusic: {fileID: 8300000, guid: 8fcbb409ba4a35b4bbafc4435045cbb6, type: 3}
-  volume: 0
+  volume: 0.72
 --- !u!4 &1253939984
 Transform:
   m_ObjectHideFlags: 0

@@ -18,6 +18,14 @@ public class EndingManager : MonoBehaviour
     [SerializeField] private Text warningtext;
     [SerializeField] private Text FinalScore;
 
+    [Header("Tier SFX")] // NEW
+    [SerializeField] private AudioClip lowTierSfx;
+    [Range(0.0f, 1.0f)][SerializeField] private float volume1;
+    [SerializeField] private AudioClip midTierSfx;
+    [Range(0.0f, 1.0f)][SerializeField] private float volume2;
+    [SerializeField] private AudioClip topTierSfx;
+    [Range(0.0f, 1.0f)][SerializeField] private float volume3;
+
     private void Start()
     {
         FinalScore.text = "スコア : " + GameData.score;
@@ -27,14 +35,17 @@ public class EndingManager : MonoBehaviour
         if (score >= 4000)
         {
             resultImage.sprite = topTierSprite;
+            AudioManager.Instance.PlaySFX(topTierSfx,volume1);
         }
         else if (score >= 3000)
         {
             resultImage.sprite = midTierSprite;
+            AudioManager.Instance.PlaySFX(midTierSfx,volume2);
         }
         else
         {
             resultImage.sprite = lowTierSprite;
+            AudioManager.Instance.PlaySFX(lowTierSfx,volume3);
         }
     }
 
@@ -43,16 +54,18 @@ public class EndingManager : MonoBehaviour
     {
         string enteredName = nameInputField.text;
 
-        if(string.IsNullOrWhiteSpace(enteredName))
+        if (string.IsNullOrWhiteSpace(enteredName))
         {
             warningtext.text = "名前を入力してください！";
         }
+        else
+        {
+            // Load existing saved scores, append the new one, save back
+            List<HighScoreEntry> scores = XMLManager.instance.LoadScores();
+            scores.Add(new HighScoreEntry { name = enteredName, score = GameData.score });
+            XMLManager.instance.SaveScores(scores);
 
-        // Load existing saved scores, append the new one, save back
-        List<HighScoreEntry> scores = XMLManager.instance.LoadScores();
-        scores.Add(new HighScoreEntry { name = enteredName, score = GameData.score });
-        XMLManager.instance.SaveScores(scores);
-
-        SceneManager.LoadScene(mainMenuSceneName);
+            SceneManager.LoadScene(mainMenuSceneName);
+        }
     }
 }

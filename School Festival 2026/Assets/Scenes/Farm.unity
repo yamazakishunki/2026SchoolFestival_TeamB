@@ -618,9 +618,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
   timer: {fileID: 1022025369}
   scoreManager: {fileID: 98065394}
-  transitionAtElapsedSeconds: 120
+  transitionAtElapsedSeconds: 90
   feverDuration: 10
-  <feverScoreThreshold>k__BackingField: 1500
+  <feverScoreThreshold>k__BackingField: 2000
 --- !u!114 &98065398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6214,6 +6214,8 @@ MonoBehaviour:
   rainMinSpawnInterval: 2
   rainMaxSpawnInterval: 4
   rainBoarSpeed: 5
+  boarNoise: {fileID: 8300000, guid: 536fc4592833f2e4e80b8dd6b3e33abe, type: 3}
+  volume: 0.52
 --- !u!4 &383508848
 Transform:
   m_ObjectHideFlags: 0
@@ -6244,6 +6246,8 @@ MonoBehaviour:
   truckPrefab: {fileID: 3328801727408190516, guid: fe4043ea835de494fbe29c971031b365, type: 3}
   spawnInterval: 15
   truckSpeed: 4
+  truckSound: {fileID: 8300000, guid: d62ae35a6e1f2894d9ba6fa8c4efaf07, type: 3}
+  volume: 0.51
   warningSignPrefab: {fileID: 7783221355594818069, guid: 3ad481275995e5f4b866bd0f788e9f35, type: 3}
   warningDuration: 1.5
   warningInset: 0.5
@@ -7751,6 +7755,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &812829389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812829391}
+  - component: {fileID: 812829390}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &812829390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812829389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91116f323ff434846a27f83801dc83ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FarmMusicTrigger
+  normalMusic: {fileID: 8300000, guid: cb70e8e3ed814ac44b3af1865d17b39f, type: 3}
+  volume1: 0.54
+  feverMusic: {fileID: 8300000, guid: 75df6d229adea15468094b5652305141, type: 3}
+  volume2: 0.32
+  rainMusic: {fileID: 8300000, guid: fff1c77af42432d4ebb7144f0ec9809a, type: 3}
+  volume3: 0.6
+--- !u!4 &812829391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812829389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 900.35614, y: 608.3393, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &831697286
 GameObject:
   m_ObjectHideFlags: 0
@@ -8426,7 +8480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c9dcbfe39472642ba3e4553b7721f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  timeremaining: 180
+  timeremaining: 150
   timeText: {fileID: 896223875}
   OnTimeUp:
     m_PersistentCalls:
@@ -15855,3 +15909,4 @@ SceneRoots:
   - {fileID: 652447420}
   - {fileID: 1468112690}
   - {fileID: 705499298}
+  - {fileID: 812829391}

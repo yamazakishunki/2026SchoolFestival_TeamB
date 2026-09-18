@@ -11,4 +11,10 @@ public class ScoreManager : MonoBehaviour
         CurrentScore += amount;
         OnScoreChanged?.Invoke(CurrentScore);
     }
+
+    public void DeductScore(int amount)
+    {
+        CurrentScore -= amount;
+        OnScoreChanged?.Invoke(CurrentScore);
+    }
 }

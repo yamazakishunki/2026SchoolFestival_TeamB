@@ -73,4 +73,11 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(clip, volume);
     }
+
+    public void StopAll() // NEW
+    {
+        musicSourceA.Stop();
+        musicSourceB.Stop();
+        sfxSource.Stop(); // also cuts off any currently-playing one-shot SFX
+    }
 }

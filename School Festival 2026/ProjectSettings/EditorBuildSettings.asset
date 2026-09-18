@@ -15,14 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Explanation.unity
     guid: fc5bd44dd0ea6568dbd185bdbaeac528
   - enabled: 1
+    path: Assets/Scenes/ScoreBoard.unity
+    guid: 3cb87faa743197344b4659a24682715c
+  - enabled: 1
     path: Assets/Scenes/Farm.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: 2f3fdb25c94753f48bf6612e12372f96
-  - enabled: 0
-    path: Assets/Scenes/ScoreBoard.unity
-    guid: 3cb87faa743197344b4659a24682715c
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cc403980cd2c62b4badbc87369cf7610, type: 3}

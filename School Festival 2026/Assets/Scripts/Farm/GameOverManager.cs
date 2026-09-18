@@ -35,6 +35,8 @@ public class GameOverManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
 
+        AudioManager.Instance.StopAll();
+
         StartCoroutine(FadeAndLoadSequence());
     }
 
