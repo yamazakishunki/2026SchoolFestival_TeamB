@@ -59,3 +59,13 @@ MonoBehaviour:
     - {fileID: -7613864469585462468, guid: ad115a95cacd3484a8c2bd0a8f7dc3e6, type: 3}
     - {fileID: 6950433608998431017, guid: ad115a95cacd3484a8c2bd0a8f7dc3e6, type: 3}
     SpriteAnimationType: 1
+  - Name: Crow
+    FPS: 13
+    Frames:
+    - {fileID: 7859486622264421692, guid: 3f0ad746ff0a0ef409fb218960bdde66, type: 3}
+    - {fileID: -5137753946873193793, guid: 3f0ad746ff0a0ef409fb218960bdde66, type: 3}
+    - {fileID: 3589398077018035380, guid: 3f0ad746ff0a0ef409fb218960bdde66, type: 3}
+    - {fileID: 7768686260605557130, guid: 3f0ad746ff0a0ef409fb218960bdde66, type: 3}
+    - {fileID: 2733342063085308652, guid: 3f0ad746ff0a0ef409fb218960bdde66, type: 3}
+    - {fileID: -148419636691289, guid: 3f0ad746ff0a0ef409fb218960bdde66, type: 3}
+    SpriteAnimationType: 0

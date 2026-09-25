@@ -1,4 +1,5 @@
 using UnityEngine;
+using GabrielBigardi.SpriteAnimator;
 
 public class Crow : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class Crow : MonoBehaviour
     [SerializeField] private Sprite landSprite;
 
     [SerializeField]private SpriteRenderer render;
+    [SerializeField] private SpriteAnimator animator;
+
+    [Header("Landing Shadow")] 
+    [SerializeField] private SpriteRenderer shadowRenderer;
+    [SerializeField] private float shadowMaxScale = 1f;
+    [SerializeField] private float shadowMinScale = 0.2f;
 
     public enum CrowState { FlyingDown, Grounded, FlyingUp }
     public CrowState State { get; private set; } = CrowState.FlyingDown; // CHANGED — now public, FarmerHarvest needs to read it
@@ -18,6 +25,7 @@ public class Crow : MonoBehaviour
     private Vector2 targetPosition;
     private Vector2 flyAwayPosition;
     private float groundedTimer;
+    private float totalDescentDistance;
 
     private static readonly System.Collections.Generic.List<Crow> activeCrows = new System.Collections.Generic.List<Crow>();
 
@@ -36,6 +44,13 @@ public class Crow : MonoBehaviour
         targetCrop = crop;
         targetPosition = crop.transform.position;
         flyAwayPosition = new Vector2(targetPosition.x, targetPosition.y + spawnHeightAboveScreen);
+
+        totalDescentDistance = Vector2.Distance(transform.position, targetPosition);
+
+        shadowRenderer.transform.SetParent(null);
+        shadowRenderer.gameObject.SetActive(true);
+        shadowRenderer.transform.position = targetPosition;
+        shadowRenderer.transform.localScale = Vector3.one * shadowMinScale;
     }
 
     private void Update()
@@ -44,7 +59,13 @@ public class Crow : MonoBehaviour
         {
             case CrowState.FlyingDown:
                 transform.position = Vector2.MoveTowards(transform.position, targetPosition, flyDownSpeed * Time.deltaTime);
-                render.sprite = flySprite;
+                animator.PlayIfNotPlaying("Crow");
+
+                float remainingDistance = Vector2.Distance(transform.position, targetPosition);
+                float progress = 1f - Mathf.Clamp01(remainingDistance / totalDescentDistance);
+                shadowRenderer.transform.localScale = Vector3.one * Mathf.Lerp(shadowMinScale, shadowMaxScale, progress);
+
+
                 if (Vector2.Distance(transform.position, targetPosition) < arrivalThreshold)
                 {
                     Land();
@@ -52,12 +73,11 @@ public class Crow : MonoBehaviour
                 break;
 
             case CrowState.Grounded:
+                animator.Pause();
                 render.sprite = landSprite;
                 groundedTimer -= Time.deltaTime;
                 if (groundedTimer <= 0f)
                 {
-                    
-                    // NEW — timer ran out naturally, crop gets destroyed NOW instead of at landing
                     if (targetCrop != null)
                     {
                         targetCrop.DestroyAndRegrow();
@@ -67,7 +87,7 @@ public class Crow : MonoBehaviour
                 break;
 
             case CrowState.FlyingUp:
-                render.sprite = flySprite;
+                animator.Resume();
                 transform.position = Vector2.MoveTowards(transform.position, flyAwayPosition, flyUpSpeed * Time.deltaTime);
                 if (Vector2.Distance(transform.position, flyAwayPosition) < arrivalThreshold)
                 {
@@ -81,14 +101,15 @@ public class Crow : MonoBehaviour
     {
         State = CrowState.Grounded;
         groundedTimer = groundedDuration;
-        // NEW — crop is NOT destroyed here anymore, only when the grounded timer naturally expires
+        Destroy(shadowRenderer.gameObject);
+
     }
 
-    // NEW — called by FarmerHarvest when the player successfully finishes the scare-off hold
+    
     public void ScareOff()
     {
         if (State != CrowState.Grounded) return;
-        FlyAway(); // crop is untouched — DestroyAndRegrow never gets called for this crow
+        FlyAway(); 
     }
 
     private void FlyAway()
@@ -96,7 +117,7 @@ public class Crow : MonoBehaviour
         State = CrowState.FlyingUp;   
     }
 
-    public static Crow GetGroundedCrowNear(Vector2 position, float maxDistance) // NEW — used by FarmerHarvest's trigger detection instead
+    public static Crow GetGroundedCrowNear(Vector2 position, float maxDistance)
     {
         foreach (var crow in activeCrows)
         {

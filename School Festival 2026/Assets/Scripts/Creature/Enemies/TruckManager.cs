@@ -23,8 +23,8 @@ public class TruckManager : MonoBehaviour
     [SerializeField] private float screenHalfWidth = 8f;
     [SerializeField] private float screenHalfHeight = 4.5f;
     [SerializeField] private float spawnBuffer = 1f;
-    [SerializeField] private float edgeOffsetX = 0f; // NEW ? shifts top/bottom spawn position sideways
-    [SerializeField] private float edgeOffsetY = 0f; // NEW ? shifts left/right spawn position up/down
+    [SerializeField] private float edgeOffsetX = 0f; 
+    [SerializeField] private float edgeOffsetY = 0f; 
 
     [Header("Item Drops")]
     [SerializeField] private GameObject[] commonItemPrefabs; 

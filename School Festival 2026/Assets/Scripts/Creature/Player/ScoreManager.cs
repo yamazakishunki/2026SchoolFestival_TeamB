@@ -8,13 +8,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int amount)
     {
-        CurrentScore += amount;
-        OnScoreChanged?.Invoke(CurrentScore);
-    }
-
-    public void DeductScore(int amount)
-    {
-        CurrentScore -= amount;
+        CurrentScore = Mathf.Max(0, CurrentScore + amount);
         OnScoreChanged?.Invoke(CurrentScore);
     }
 }
